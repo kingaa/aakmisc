@@ -1,6 +1,7 @@
 export(
        getMLEs,recMLEs,
        recScript,listScripts,catScript,dropScript,
+       getQuery,
        startTunnel,stopTunnel,
        random.org,urandom
        )
