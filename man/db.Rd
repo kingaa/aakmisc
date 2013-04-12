@@ -31,9 +31,10 @@ dropScript(script, host = getOption("aakmisc.dbhost"),
 catScript(script, file = "", host = getOption("aakmisc.dbhost"),
           dbname = getOption("aakmisc.dbname"),
           \dots)
-getQuery(host = getOption("aakmisc.dbhost"),
+getQuery(statement,
+         host = getOption("aakmisc.dbhost"),
          dbname = getOption("aakmisc.dbname"),
-         statement, \dots)
+         \dots)
 startTunnel(port, remotehost = getOption("aakmisc.remotehost"), sleep = 5)
 stopTunnel(info)
 }

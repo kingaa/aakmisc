@@ -1,6 +1,7 @@
-getQuery <- function (host = getOption("aakmisc.dbhost"),
+getQuery <- function (statement,
+                      host = getOption("aakmisc.dbhost"),
                       dbname = getOption("aakmisc.dbname"),
-                      statement, ...) {
+                      ...) {
   if (is.null(host))
     stop("must specify ",sQuote("host"))
   if (is.null(dbname))
