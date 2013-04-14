@@ -6,6 +6,7 @@
 \alias{catScript}
 \alias{listScripts}
 \alias{getQuery}
+\alias{writeDBTable}
 \alias{startTunnel}
 \alias{stopTunnel}
 \title{Interface with databases}
@@ -35,6 +36,10 @@ getQuery(statement,
          host = getOption("aakmisc.dbhost"),
          dbname = getOption("aakmisc.dbname"),
          \dots)
+writeDBTable(name, value, overwrite = FALSE, append = FALSE,
+             row.names = FALSE,
+             host = getOption("aakmisc.dbhost"),
+             dbname = getOption("aakmisc.dbname"), \dots)
 startTunnel(port, remotehost = getOption("aakmisc.remotehost"), sleep = 5)
 stopTunnel(info)
 }
@@ -60,6 +65,12 @@ stopTunnel(info)
   }
   \item{statement}{
     SQL statement passed to \code{\link[DBI]{dbGetQuery}}.
+  }
+  \item{name, value}{
+    Name and contents of table to create.
+  }
+  \item{overwrite, append, row.names}{
+    See \code{\link[DBI]{dbWriteTable}}.
   }
   \item{port}{
     Local port to use for ssh tunnel.

@@ -1,3 +1,30 @@
+writeDBTable <- function (name, value,
+                          overwrite = FALSE, append = FALSE, row.names = FALSE,
+                          host = getOption("aakmisc.dbhost"),
+                          dbname = getOption("aakmisc.dbname"),
+                          ...) {
+  if (missing(name) || missing(value))
+    stop("must specify ",sQuote("name")," and ",sQuote("value"))
+  if (is.null(host))
+    stop("must specify ",sQuote("host"))
+  if (is.null(dbname))
+    stop("must specify ",sQuote("dbname"))
+
+  drv <- dbDriver("PostgreSQL")
+  db <- dbConnect(drv,host=host,dbname=dbname,...)
+  on.exit(dbDisconnect(db))
+  on.exit(dbUnloadDriver(drv),add=TRUE)
+
+  dbWriteTable(
+               db,
+               name=name,
+               value=value,
+               overwrite=overwrite,
+               append=append,
+               row.names=row.names
+               )
+}
+
 getQuery <- function (statement,
                       host = getOption("aakmisc.dbhost"),
                       dbname = getOption("aakmisc.dbname"),
