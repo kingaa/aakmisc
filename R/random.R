@@ -18,3 +18,25 @@ random.org <- function (n = 10, rnd = "new") {
 urandom <- function (n = 10) {
   as.integer(abs(readBin("/dev/urandom",what=integer(0),n=n)))
 }
+
+## function to control RNG for a single evaluation
+rngControl <- function (expr, seed = NULL) {
+  expr <- substitute(expr)
+  if (!is.null(seed)) {
+    if (!exists(".Random.seed",envir=.GlobalEnv)) runif(1)
+    save.seed <- get('.Random.seed',envir=.GlobalEnv)
+    set.seed(seed)
+  }
+  res <- eval(expr,envir=parent.frame())
+  if (!is.null(seed)) {
+    assign('.Random.seed',save.seed,envir=.GlobalEnv)
+  }
+  res
+}
+
+rngSeeds <- function (n, seed = NULL) {
+  rngControl(
+             as.integer(floor(runif(n=n,min=1,max=2^31))),
+             seed=seed
+             )
+}

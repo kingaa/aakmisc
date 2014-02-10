@@ -3,5 +3,6 @@ export(
        recScript,listScripts,catScript,dropScript,
        getQuery,writeDBTable,
        startTunnel,stopTunnel,
-       random.org,urandom
+       random.org,urandom,
+       rngControl,rngSeeds
        )
