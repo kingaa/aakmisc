@@ -14,34 +14,46 @@
   Interface with project databases.
 }
 \usage{
-getMLEs(host = getOption("aakmisc.dbhost"),
-        dbname = getOption("aakmisc.dbname"),
+getMLEs(host = getOption("aakmisc.dbhost","localhost"),
+        dbname = getOption("aakmisc.dbname",NULL),
+        port = getOption("aakmisc.port",5432),
         \dots)
-recMLEs(mle, host = getOption("aakmisc.dbhost"),
-        dbname = getOption("aakmisc.dbname"),
+recMLEs(mle, host = getOption("aakmisc.dbhost","localhost"),
+        dbname = getOption("aakmisc.dbname",NULL),
+        port = getOption("aakmisc.port",5432),
         \dots)
-listScripts(host = getOption("aakmisc.dbhost"),
-            dbname = getOption("aakmisc.dbname"),
+listScripts(host = getOption("aakmisc.dbhost","localhost"),
+            dbname = getOption("aakmisc.dbname",NULL),
+            port = getOption("aakmisc.port",5432),
             \dots)
-recScript(files, host = getOption("aakmisc.dbhost"),
-          dbname = getOption("aakmisc.dbname"),
+recScript(files, host = getOption("aakmisc.dbhost","localhost"),
+          dbname = getOption("aakmisc.dbname",NULL),
+          port = getOption("aakmisc.port",5432),
           \dots)
-dropScript(script, host = getOption("aakmisc.dbhost"),
-           dbname = getOption("aakmisc.dbname"),
+dropScript(script, host = getOption("aakmisc.dbhost","localhost"),
+           dbname = getOption("aakmisc.dbname",NULL),
+           port = getOption("aakmisc.port",5432),
            \dots)
-catScript(script, file = "", host = getOption("aakmisc.dbhost"),
-          dbname = getOption("aakmisc.dbname"),
+catScript(script, file = "", host = getOption("aakmisc.dbhost","localhost"),
+          dbname = getOption("aakmisc.dbname",NULL),
+          port = getOption("aakmisc.port",5432),
           \dots)
 getQuery(statement,
-         host = getOption("aakmisc.dbhost"),
-         dbname = getOption("aakmisc.dbname"),
+         host = getOption("aakmisc.dbhost","localhost"),
+         dbname = getOption("aakmisc.dbname",NULL),
+         port = getOption("aakmisc.port",5432),
          \dots)
 writeDBTable(name, value, overwrite = FALSE, append = FALSE,
              row.names = FALSE,
-             host = getOption("aakmisc.dbhost"),
-             dbname = getOption("aakmisc.dbname"), \dots)
-startTunnel(port, remotehost = getOption("aakmisc.remotehost"), sleep = 5)
-stopTunnel(info)
+             host = getOption("aakmisc.dbhost","localhost"),
+             dbname = getOption("aakmisc.dbname",NULL),
+             port = getOption("aakmisc.port",5432),
+             \dots)
+startTunnel(port = NULL,
+            remotehost = getOption("aakmisc.remotehost",
+                                   "kinglab.eeb.lsa.umich.edu"),
+            sleep = 5)
+stopTunnel(..., pid = getOption("aakmisc.tunnelpid",NULL))
 }
 \arguments{
   \item{host}{
@@ -49,6 +61,10 @@ stopTunnel(info)
   }
   \item{dbname}{
     Name of PostgreSQL database.
+  }
+  \item{port}{
+    Port on which to connect to PostgreSQL database.
+    If NULL, a random port number will be used.
   }
   \item{mle}{
     A data-frame of MLEs to be recorded.
@@ -72,19 +88,16 @@ stopTunnel(info)
   \item{overwrite, append, row.names}{
     See \code{\link[DBI]{dbWriteTable}}.
   }
-  \item{port}{
-    Local port to use for ssh tunnel.
-    If unspecified, a random port number will be used.
-  }
   \item{remotehost}{
     Hostname of PostgreSQL server.
     An ssh tunnel to this host will be created.
   }
+  \item{pid}{
+    ID of ssh tunnel process.
+    Set automatically by \code{startTunnel}.
+  }
   \item{sleep}{
     Time in seconds to sleep after initiating the ssh tunnel.
-  }
-  \item{info}{
-    Information about the ssh tunnel returned by \code{startTunnel}.
   }
   \item{\dots}{
     Additional arguments will be passed to \code{\link[DBI]{dbConnect}}.
@@ -92,9 +105,9 @@ stopTunnel(info)
 }
 \examples{
   \dontrun{
-startTunnel() -> tun
-listScripts(port=tun$port)
-stopTunnel(tun)
+startTunnel()
+listScripts()
+stopTunnel()
   }
 }
 \author{Aaron A. King \email{kingaa at umich dot edu}}

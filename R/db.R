@@ -1,7 +1,8 @@
 writeDBTable <- function (name, value,
                           overwrite = FALSE, append = FALSE, row.names = FALSE,
-                          host = getOption("aakmisc.dbhost"),
-                          dbname = getOption("aakmisc.dbname"),
+                          host = getOption("aakmisc.dbhost","localhost"),
+                          dbname = getOption("aakmisc.dbname",NULL),
+                          port=getOption("aakmisc.port",5432),
                           ...) {
   if (missing(name) || missing(value))
     stop("must specify ",sQuote("name")," and ",sQuote("value"))
@@ -11,7 +12,7 @@ writeDBTable <- function (name, value,
     stop("must specify ",sQuote("dbname"))
 
   drv <- dbDriver("PostgreSQL")
-  db <- dbConnect(drv,host=host,dbname=dbname,...)
+  db <- dbConnect(drv,host=host,dbname=dbname,port=port,...)
   on.exit(dbDisconnect(db))
   on.exit(dbUnloadDriver(drv),add=TRUE)
 
@@ -26,8 +27,9 @@ writeDBTable <- function (name, value,
 }
 
 getQuery <- function (statement,
-                      host = getOption("aakmisc.dbhost"),
-                      dbname = getOption("aakmisc.dbname"),
+                      host = getOption("aakmisc.dbhost","localhost"),
+                      dbname = getOption("aakmisc.dbname",NULL),
+                      port=getOption("aakmisc.port",5432),
                       ...) {
   if (is.null(host))
     stop("must specify ",sQuote("host"))
@@ -35,15 +37,16 @@ getQuery <- function (statement,
     stop("must specify ",sQuote("dbname"))
 
   drv <- dbDriver("PostgreSQL")
-  db <- dbConnect(drv,host=host,dbname=dbname,...)
+  db <- dbConnect(drv,host=host,dbname=dbname,port=port,...)
   on.exit(dbDisconnect(db))
   on.exit(dbUnloadDriver(drv),add=TRUE)
 
   dbGetQuery(db,statement=statement)
 }
 
-getMLEs <- function (host = getOption("aakmisc.dbhost"),
-                     dbname = getOption("aakmisc.dbname"),
+getMLEs <- function (host = getOption("aakmisc.dbhost","localhost"),
+                     dbname = getOption("aakmisc.dbname",NULL),
+                     port=getOption("aakmisc.port",5432),
                      ...) {
   if (is.null(host))
     stop("must specify ",sQuote("host"))
@@ -51,7 +54,7 @@ getMLEs <- function (host = getOption("aakmisc.dbhost"),
     stop("must specify ",sQuote("dbname"))
 
   drv <- dbDriver("PostgreSQL")
-  db <- dbConnect(drv,host=host,dbname=dbname,...)
+  db <- dbConnect(drv,host=host,dbname=dbname,port=port,...)
   on.exit(dbDisconnect(db))
   on.exit(dbUnloadDriver(drv),add=TRUE)
 
@@ -59,8 +62,9 @@ getMLEs <- function (host = getOption("aakmisc.dbhost"),
 }
 
 recMLEs <- function (mle,
-                     host = getOption("aakmisc.dbhost"),
-                     dbname = getOption("aakmisc.dbname"),
+                     host = getOption("aakmisc.dbhost","localhost"),
+                     dbname = getOption("aakmisc.dbname",NULL),
+                     port=getOption("aakmisc.port",5432),
                      ...) {
   if (is.null(host))
     stop("must specify ",sQuote("host"))
@@ -68,7 +72,7 @@ recMLEs <- function (mle,
     stop("must specify ",sQuote("dbname"))
 
   drv <- dbDriver("PostgreSQL")
-  db <- dbConnect(drv,host=host,dbname=dbname,...)
+  db <- dbConnect(drv,host=host,dbname=dbname,port=port,...)
   on.exit(dbDisconnect(db))
   on.exit(dbUnloadDriver(drv),add=TRUE)
 
@@ -83,8 +87,9 @@ recMLEs <- function (mle,
 }
 
 recScript <- function (files,
-                       host = getOption("aakmisc.dbhost"),
-                       dbname = getOption("aakmisc.dbname"),
+                       host = getOption("aakmisc.dbhost","localhost"),
+                       dbname = getOption("aakmisc.dbname",NULL),
+                       port=getOption("aakmisc.port",5432),
                        ...) {
   if (is.null(host))
     stop("must specify ",sQuote("host"))
@@ -92,7 +97,7 @@ recScript <- function (files,
     stop("must specify ",sQuote("dbname"))
 
   drv <- dbDriver("PostgreSQL")
-  db <- dbConnect(drv,host=host,dbname=dbname,...)
+  db <- dbConnect(drv,host=host,dbname=dbname,port=port,...)
   on.exit(dbDisconnect(db))
   on.exit(dbUnloadDriver(drv),add=TRUE)
 
@@ -121,8 +126,9 @@ recScript <- function (files,
 }
 
 dropScript <- function (script,
-                        host = getOption("aakmisc.dbhost"),
-                        dbname = getOption("aakmisc.dbname"),
+                        host = getOption("aakmisc.dbhost","localhost"),
+                        dbname = getOption("aakmisc.dbname",NULL),
+                        port=getOption("aakmisc.port",5432),
                         ...) {
   if (is.null(host))
     stop("must specify ",sQuote("host"))
@@ -130,7 +136,7 @@ dropScript <- function (script,
     stop("must specify ",sQuote("dbname"))
 
   drv <- dbDriver("PostgreSQL")
-  db <- dbConnect(drv,host=host,dbname=dbname,...)
+  db <- dbConnect(drv,host=host,dbname=dbname,port=port,...)
   on.exit(dbDisconnect(db))
   on.exit(dbUnloadDriver(drv),add=TRUE)
 
@@ -142,8 +148,9 @@ dropScript <- function (script,
   cat("recorded scripts:",def$script,sep="\n")
 }
 
-listScripts <- function (host = getOption("aakmisc.dbhost"),
-                         dbname = getOption("aakmisc.dbname"),
+listScripts <- function (host = getOption("aakmisc.dbhost","localhost"),
+                         dbname = getOption("aakmisc.dbname",NULL),
+                         port=getOption("aakmisc.port",5432),
                          ...) {
   if (is.null(host))
     stop("must specify ",sQuote("host"))
@@ -151,7 +158,7 @@ listScripts <- function (host = getOption("aakmisc.dbhost"),
     stop("must specify ",sQuote("dbname"))
 
   drv <- dbDriver("PostgreSQL")
-  db <- dbConnect(drv,host=host,dbname=dbname,...)
+  db <- dbConnect(drv,host=host,dbname=dbname,port=port,...)
   on.exit(dbDisconnect(db))
   on.exit(dbUnloadDriver(drv),add=TRUE)
   
@@ -160,8 +167,9 @@ listScripts <- function (host = getOption("aakmisc.dbhost"),
 }
 
 catScript <- function (script, file = "",
-                       host = getOption("aakmisc.dbhost"),
-                       dbname = getOption("aakmisc.dbname"),
+                       host = getOption("aakmisc.dbhost","localhost"),
+                       dbname = getOption("aakmisc.dbname",NULL),
+                       port=getOption("aakmisc.port",5432),
                        ...) {
   if (is.null(host))
     stop("must specify ",sQuote("host"))
@@ -169,7 +177,7 @@ catScript <- function (script, file = "",
     stop("must specify ",sQuote("dbname"))
 
   drv <- dbDriver("PostgreSQL")
-  db <- dbConnect(drv,host=host,dbname=dbname,...)
+  db <- dbConnect(drv,host=host,dbname=dbname,port=port,...)
   on.exit(dbDisconnect(db))
   on.exit(dbUnloadDriver(drv),add=TRUE)
 

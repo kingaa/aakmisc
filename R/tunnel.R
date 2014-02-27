@@ -1,29 +1,32 @@
-startTunnel <- function (port,
-                         remotehost = getOption("aakmisc.remotehost"),
+startTunnel <- function (port = NULL,
+                         remotehost = getOption("aakmisc.remotehost",
+                           "kinglab.eeb.lsa.umich.edu"),
                          sleep = 5) {
-  if (missing(port))
+  if (is.null(port))
     port <- ceiling(runif(n=1,min=49151,max=65535))
+  options(aakmisc.port=port)
   if (is.null(remotehost))
     stop("must specify ",sQuote("remotehost"))
   pidfile <- tempfile()
   cmd <- paste0("ssh -NL ",port,":localhost:5432 ",
                 remotehost," & echo $! > ",pidfile)
-  system(cmd)
+  stat <- system(cmd)
+  pid <- system2("cat",pidfile,stdout=TRUE)
+  options(aakmisc.tunnelpid=as.integer(pid))
   Sys.sleep(sleep)
-  list(port=port,pidfile=pidfile)
+  invisible(NULL)
 }
 
-stopTunnel <- function (info) {
-  if (is.character(info))
-    info <- list(pidfile=info)
-  pid <- system(paste0("cat ",info$pidfile),intern=T)
+stopTunnel <- function (...,
+                        pid = getOption("aakmisc.tunnelpid",NULL)) {
+  if (is.null(pid))
+    stop("must specify ",sQuote("pid"))
   stat <- system2("kill",pid)
-  if (stat==0) {
-    file.remove(info$pidfile)
-    return(TRUE)
-  } else {
+  if (stat!=0) {
     cat(sQuote("stopTunnel")," failed: return status ",stat,"\n")
-    return(FALSE)
+    FALSE
+  } else {
+    TRUE
   }
 }
 
