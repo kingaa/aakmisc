@@ -14,7 +14,7 @@ startTunnel <- function (port = NULL,
   pid <- system2("cat",pidfile,stdout=TRUE)
   options(aakmisc.tunnelpid=as.integer(pid))
   Sys.sleep(sleep)
-  invisible(NULL)
+  invisible(list(port=port,pidfile=pidfile,tunnelpid=pid,remotehost=remotehost))
 }
 
 stopTunnel <- function (...,
