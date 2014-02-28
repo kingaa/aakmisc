@@ -17,37 +17,45 @@
 getMLEs(host = getOption("aakmisc.dbhost","localhost"),
         dbname = getOption("aakmisc.dbname",NULL),
         port = getOption("aakmisc.port",5432),
+        user = getOption("aakmisc.user",NULL),
         \dots)
 recMLEs(mle, host = getOption("aakmisc.dbhost","localhost"),
         dbname = getOption("aakmisc.dbname",NULL),
         port = getOption("aakmisc.port",5432),
+        user = getOption("aakmisc.user",NULL),
         \dots)
 listScripts(host = getOption("aakmisc.dbhost","localhost"),
             dbname = getOption("aakmisc.dbname",NULL),
             port = getOption("aakmisc.port",5432),
+            user = getOption("aakmisc.user",NULL),
             \dots)
 recScript(files, host = getOption("aakmisc.dbhost","localhost"),
           dbname = getOption("aakmisc.dbname",NULL),
           port = getOption("aakmisc.port",5432),
+          user = getOption("aakmisc.user",NULL),
           \dots)
 dropScript(script, host = getOption("aakmisc.dbhost","localhost"),
            dbname = getOption("aakmisc.dbname",NULL),
            port = getOption("aakmisc.port",5432),
+           user = getOption("aakmisc.user",NULL),
            \dots)
 catScript(script, file = "", host = getOption("aakmisc.dbhost","localhost"),
           dbname = getOption("aakmisc.dbname",NULL),
           port = getOption("aakmisc.port",5432),
+          user = getOption("aakmisc.user",NULL),
           \dots)
 getQuery(statement,
          host = getOption("aakmisc.dbhost","localhost"),
          dbname = getOption("aakmisc.dbname",NULL),
          port = getOption("aakmisc.port",5432),
+         user = getOption("aakmisc.user",NULL),
          \dots)
 writeDBTable(name, value, overwrite = FALSE, append = FALSE,
              row.names = FALSE,
              host = getOption("aakmisc.dbhost","localhost"),
              dbname = getOption("aakmisc.dbname",NULL),
              port = getOption("aakmisc.port",5432),
+             user = getOption("aakmisc.user",NULL),
              \dots)
 startTunnel(port = NULL,
             remotehost = getOption("aakmisc.remotehost",
@@ -65,6 +73,10 @@ stopTunnel(..., pid = getOption("aakmisc.tunnelpid",NULL))
   \item{port}{
     Port on which to connect to PostgreSQL database.
     If NULL, a random port number will be used.
+  }
+  \item{user}{
+    Username to use in conneting to PostgreSQL database.
+    If NULL, Sys.getenv("USER") will be used.
   }
   \item{mle}{
     A data-frame of MLEs to be recorded.
