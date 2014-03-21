@@ -4,17 +4,24 @@ startTunnel <- function (port = NULL,
                          sleep = 5) {
   if (is.null(port))
     port <- ceiling(runif(n=1,min=49151,max=65535))
-  options(aakmisc.port=port)
   if (is.null(remotehost))
     stop("must specify ",sQuote("remotehost"))
+  ## stop any existing ssh tunnel
+  pid <- getOption("aakmisc.tunnelpid",NULL)
+  if (!is.null(pid)) stopTunnel(pid=pid)
+  ## start ssh tunnel and record pid
   pidfile <- tempfile()
   cmd <- paste0("ssh -NL ",port,":localhost:5432 ",
                 remotehost," & echo $! > ",pidfile)
   stat <- system(cmd)
   pid <- system2("cat",pidfile,stdout=TRUE)
-  options(aakmisc.tunnelpid=as.integer(pid))
+  unlink(pidfile)
+  options(
+          aakmisc.tunnelpid=as.integer(pid),
+          aakmisc.port=port
+          )
   Sys.sleep(sleep)
-  invisible(list(port=port,pidfile=pidfile,tunnelpid=pid,remotehost=remotehost))
+  invisible(list(port=port,tunnelpid=pid,remotehost=remotehost))
 }
 
 stopTunnel <- function (...,
@@ -24,9 +31,12 @@ stopTunnel <- function (...,
   stat <- system2("kill",pid)
   if (stat!=0) {
     cat(sQuote("stopTunnel")," failed: return status ",stat,"\n")
-    FALSE
+    invisible(FALSE)
   } else {
-    TRUE
+    options(
+            aakmisc.tunnelpid=NULL,
+            aakmisc.port=NULL
+            )
+    invisible(TRUE)
   }
 }
-
