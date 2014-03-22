@@ -1,3 +1,5 @@
+import(DBI,RPostgreSQL,ggplot2,plyr,reshape2,scales)
+
 export(
        getMLEs,recMLEs,
        recScript,listScripts,catScript,dropScript,

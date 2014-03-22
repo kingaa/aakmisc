@@ -30,7 +30,6 @@ rngSeeds(n, seed = NULL)
 \examples{
   \dontrun{
   random.org(n=5)
-  }
   seed <- urandom(n=1)
   seeds <- rngSeeds(5,seed=seed)
   set.seed(seed)
@@ -41,6 +40,7 @@ rngSeeds(n, seed = NULL)
   set.seed(seed)
   runif(5)
   runif(5)
+  }
 }
 \references{
   \url{http://www.random.org}

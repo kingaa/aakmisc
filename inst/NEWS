@@ -1,0 +1,6 @@
+_N_e_w_s _f_o_r _P_a_c_k_a_g_e '_a_a_k_m_i_s_c'
+
+_C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._8-_4:
+
+        • will attempt to clean up ssh tunnel processes on exit from R
+

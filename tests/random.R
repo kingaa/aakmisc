@@ -1,8 +1,12 @@
 library(aakmisc)
 
-seed <- urandom(n=1)
-set.seed(seed)
+if (.Platform$OS.type == "unix") {
+  seed <- urandom(n=1)
+} else {
+  seed <- 7968868L
+}
 
+set.seed(seed)
 rngSeeds(5,seed=seed)
 
 x1 <- runif(5)
