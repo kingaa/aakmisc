@@ -1,9 +1,13 @@
-library(aakmisc)
+if (.Platform$OS.type == "unix") {
 
-options(aakmisc.dbname="ouchsim")
+  library(aakmisc)
 
-startTunnel()
+  options(aakmisc.dbname="ouchsim")
 
-getQuery("select painting,seed,id from fits where id < 10")
+  startTunnel()
 
-stopTunnel()
+  getQuery("select painting,seed,id from fits where id < 10")
+
+  stopTunnel()
+
+}
