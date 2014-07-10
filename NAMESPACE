@@ -1,4 +1,4 @@
-import(DBI,RPostgreSQL,ggplot2,plyr,reshape2,scales)
+import(DBI,RPostgreSQL,ggplot2,plyr,reshape2,scales,methods)
 
 export(
        getMLEs,recMLEs,
@@ -6,5 +6,10 @@ export(
        getQuery,writeDBTable,
        startTunnel,stopTunnel,
        random.org,urandom,
-       rngControl,rngSeeds
+       rngControl,rngSeeds,
+       plotMatrix
        )
+
+S3method(plotMatrix,list)
+S3method(plotMatrix,data.frame)
+S3method(print,plotMatrix)

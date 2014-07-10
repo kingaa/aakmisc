@@ -6,7 +6,7 @@ if (.Platform$OS.type == "unix") {
 
   startTunnel()
 
-  getQuery("select painting,seed,id from fits where id < 10")
+  print(getQuery("select painting,seed,id from fits where id < 10"))
 
   stopTunnel()
 
