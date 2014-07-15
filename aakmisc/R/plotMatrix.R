@@ -122,8 +122,8 @@ plotMatrix.internal <- function (data, marg.exp=0.02, labels = names(data),
                   width=unit(1,"npc")-unit(8,"lines"),
                   height=unit(1,"npc")-unit(8,"lines")
                   )
-  class(gob) <- c("plotMatrix",class(gob))
-  invisible(gob)
+  class(gob) <- c("aakplot",class(gob))
+  gob
 }
 
 plotMatrix <- function (data, ...) UseMethod("plotMatrix")
@@ -137,7 +137,7 @@ plotMatrix.list <- plotMatrix.internal
 
 plotMatrix.data.frame <- plotMatrix.internal
 
-print.plotMatrix <- function (x, newpage = is.null(vp), vp = NULL, ...) {
+print.aakplot <- function (x, newpage = is.null(vp), vp = NULL, ...) {
   if (newpage) grid.newpage()
   if (!is.null(vp)) pushViewport(vp)
   grid.draw(x)

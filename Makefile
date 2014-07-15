@@ -3,6 +3,7 @@ SRCREPOS=src/contrib
 WINREPOS=bin/windows/contrib/3.1
 DOCREPOS=doc/packages
 ARCHIVE=./dists
+INSTALL=install
 INSTALL_DIR=./library
 
 RM = rm -f

@@ -2,7 +2,7 @@
 \alias{plotMatrix}
 \alias{plotMatrix.list}
 \alias{plotMatrix.data.frame}
-\alias{print.plotMatrix}
+\alias{print.aakplot}
 \title{A scatterplot matrix with densities on the diagonal.}
 \description{
   A special scatterplot matrix.
@@ -12,7 +12,7 @@
      alpha = 1, pch = 16, size = unit(2,"mm"), \dots)
 \method{plotMatrix}{list}(data, marg.exp = 0.02, labels = names(data),
      alpha = 1, pch = 16, size = unit(2,"mm"), \dots)
-\method{print}{plotMatrix}(x, newpage = is.null(vp), vp = NULL, \dots)
+\method{print}{aakplot}(x, newpage = is.null(vp), vp = NULL, \dots)
 }
 \arguments{
   \item{data}{
