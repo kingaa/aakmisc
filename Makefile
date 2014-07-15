@@ -1,4 +1,4 @@
-REPOS=/var/www/html/R/
+REPOS=/var/www/html/R
 SRCREPOS=src/contrib
 WINREPOS=bin/windows/contrib/3.1
 DOCREPOS=doc/packages
@@ -127,17 +127,18 @@ default:
 	-$(INSTALL) -m0644 $(PKG).zip $(REPOS)/$(WINREPOS)
 	-$(INSTALL) -m0644 $(PKG).tar.gz $(REPOS)/$(SRCREPOS)
 	-$(INSTALL) -m0644 $*.pdf $(REPOS)/$(DOCREPOS)
-	$(RSCRIPT) pkgindex.R winrepos="\"$(REPOS)/$(WINREPOS)\"" srcrepos="\"$(REPOS)/$(SRCREPOS)\""
+	$(RSCRIPT) -e 'Sys.umask("0022"); tools::write_PACKAGES(dir="$(REPOS)/$(WINREPOS)",type="win.binary")'
+	$(RSCRIPT) -e 'Sys.umask("0022"); tools::write_PACKAGES(dir="$(REPOS)/$(SRCREPOS)",type="source")'
 	-$(INSTALL) -m0644 $(PKG).zip $(ARCHIVE)
 	-$(INSTALL) -m0644 $(PKG).tar.gz $(ARCHIVE)
 	-$(INSTALL) -m0644 $*.pdf $(ARCHIVE)
-	$(RSCRIPT) pkgindex.R
+	$(RSCRIPT) -e 'Sys.umask("0022"); tools::write_PACKAGES(dir="dists",type="source")'
 
 %.tex: %.Rnw
-	$(RCMD) Sweave $*
+	$(RSCRIPT) -e "library(knitr); knit(\"$*.Rnw\")"
 
 %.R: %.Rnw
-	$(RCMD) Stangle $*
+	$(RSCRIPT) -e "library(knitr); purl(\"$*.Rnw\")"
 
 %.pdf: %.tex
 	$(PDFLATEX) $*
@@ -156,6 +157,7 @@ default:
 	$(MAKEIDX) $*
 
 clean:
-	$(RM) *.o *.so *.tex *.log *.aux *.out *.nav *.snm *.toc *-???.pdf Rplots.ps Rplots.pdf
+	$(RM) *.o *.so *.tex *.log *.aux *.out *.nav *.snm *.toc *.bak
+	$(RM) Rplots.ps Rplots.pdf
 
 .SECONDARY:
