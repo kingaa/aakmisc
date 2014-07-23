@@ -14,7 +14,7 @@ startTunnel <- function (port = NULL,
   cmd <- paste0("ssh -NL ",port,":localhost:5432 ",
                 remotehost," & echo $! > ",pidfile)
   stat <- system(cmd)
-  pid <- system2("cat",pidfile,stdout=TRUE)
+  pid <- scan(pidfile,what=integer(0),quiet=TRUE)
   unlink(pidfile)
   options(
           aakmisc.tunnelpid=as.integer(pid),
