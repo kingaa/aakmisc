@@ -1,12 +1,12 @@
 scinot <- function (x, digits = 2, format = c("expression","latex","math")) {
   if (length(x) > 1)
     warning("only the first element of ",sQuote("x")," will be formatted")
-  type <- match.arg(type)
+  format <- match.arg(format)
   x <- signif(x[1],digits=digits)
   ch <- floor(log10(abs(x)))
   mn <- x/10^ch
   switch(
-         type,
+         format,
          expression={
            bquote(.(mn)%*%10^.(ch))
          },

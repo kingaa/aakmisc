@@ -1,4 +1,4 @@
-import(DBI,RPostgreSQL,ggplot2,plyr,reshape2,scales,methods)
+import(DBI,RPostgreSQL,ggplot2,grid,scales,plyr,reshape2,methods)
 
 export(
        getMLEs,recMLEs,
