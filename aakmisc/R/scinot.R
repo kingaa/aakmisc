@@ -1,4 +1,4 @@
-scinot <- function (x, digits = 2, type = c("expression","latex","math")) {
+scinot <- function (x, digits = 2, format = c("expression","latex","math")) {
   if (length(x) > 1)
     warning("only the first element of ",sQuote("x")," will be formatted")
   type <- match.arg(type)

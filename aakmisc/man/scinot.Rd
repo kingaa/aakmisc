@@ -5,7 +5,7 @@
   Format using scientific notation.
 }
 \usage{
-scinot(x, digits = 2, type = c("expression","latex","math"))
+scinot(x, digits = 2, format = c("expression","latex","math"))
 }
 \arguments{
   \item{x}{
@@ -14,7 +14,7 @@ scinot(x, digits = 2, type = c("expression","latex","math"))
   \item{digits}{
     Number of significant digits in mantissa.
   }
-  \item{type}{
+  \item{format}{
     Format specification.
     \code{type="expression"} results in an R expression.
     \code{type="latex"} results in a latex expression.
@@ -25,6 +25,6 @@ scinot(x, digits = 2, type = c("expression","latex","math"))
 x <- c(0.0309595,8577676.441)
 scinot(x[2],4)
 scinot(x[1],2,"latex")
-sapply(x,scinot,digits=3,type='math')
+sapply(x,scinot,digits=3,format='math')
 }
 \author{Aaron A. King \email{kingaa at umich dot edu}}
