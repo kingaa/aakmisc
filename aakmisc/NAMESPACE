@@ -1,6 +1,7 @@
 import(DBI,RPostgreSQL,ggplot2,grid,scales,plyr,reshape2,methods)
 
 export(
+       bake,
        getMLEs,recMLEs,
        recScript,listScripts,catScript,dropScript,
        getQuery,writeDBTable,
