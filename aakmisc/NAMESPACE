@@ -1,4 +1,5 @@
 import(DBI,RPostgreSQL,ggplot2,grid,scales,plyr,reshape2,methods)
+importFrom(curl,curl)
 
 export(
        bake,
