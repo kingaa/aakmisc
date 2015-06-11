@@ -1,4 +1,4 @@
-import(DBI,RPostgreSQL,ggplot2,grid,scales,plyr,reshape2,methods)
+import(DBI,RPostgreSQL,ggplot2,grid,plyr,reshape2,magrittr,methods)
 importFrom(curl,curl)
 
 export(
