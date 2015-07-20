@@ -7,3 +7,20 @@ bake <- function (file, expr) {
     val
   }
 }
+
+broil <- function (file, expr) {
+  if (file.exists(file)) {
+    objlist <- load(file)
+    for (obj in objlist)
+      assign(obj,get(obj),envir=parent.frame())
+  } else {
+    expr <- substitute(expr)
+    e <- new.env()
+    eval(expr,envir=e)
+    objlist <- objects(envir=e)
+    save(list=objlist,file=file,envir=e)
+    for (obj in objlist)
+      assign(obj,get(obj,envir=e),envir=parent.frame())
+  }
+  invisible(objlist)
+}

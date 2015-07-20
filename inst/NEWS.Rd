@@ -1,5 +1,10 @@
 \name{NEWS}
 \title{News for Package 'aakmisc'}
+\section{Changes in aakmisc version 0.15-1}{
+  \itemize{
+    \item New \code{broil} function.
+  }
+}
 \section{Changes in aakmisc version 0.12-1}{
   \itemize{
     \item On attachment, the default \pkg{ggplot2} theme is \code{theme_bw()}.

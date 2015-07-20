@@ -2,7 +2,7 @@ import(DBI,RPostgreSQL,ggplot2,grid,plyr,reshape2,magrittr,methods)
 importFrom(curl,curl)
 
 export(
-       bake,
+       bake,broil,
        getMLEs,recMLEs,
        recScript,listScripts,catScript,dropScript,
        getQuery,writeDBTable,

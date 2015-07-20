@@ -13,7 +13,7 @@ startTunnel <- function (port = NULL,
   pidfile <- tempfile()
   cmd <- paste0("ssh -NL ",port,":localhost:5432 ",
                 remotehost," & echo $! > ",pidfile)
-  stat <- system(cmd)
+  system(cmd)
   pid <- scan(pidfile,what=integer(0),quiet=TRUE)
   unlink(pidfile)
   options(

@@ -1,17 +1,14 @@
 Package: aakmisc
 Type: Package
-Title: Miscellany for the King lab
-Version: 0.14-1
-Date: 2015-06-11
+Title: Miscellany for the King Lab
+Version: 0.15-1
+Date: 2015-07-19
 Maintainer: Aaron A. King <kingaa@umich.edu>
 Authors@R: c(person(given=c("Aaron","A."),family="King",role=c("aut","cre"),email="kingaa@umich.edu"))
-Description: Miscellaneous tools.
+Description: Miscellaneous tools, collected in one place.
 Depends: R(>= 3.0.0), plyr, reshape2, ggplot2, grid, magrittr
 Imports: methods, curl, DBI, RPostgreSQL
-Suggests: knitr
-VignetteBuilder: knitr
 License: GPL(>=3)
 LazyLoad: true
 LazyData: true
-BuildVignettes: true
 Collate: aaa.R bake.R db.R tunnel.R random.R plotMatrix.R scinot.R
