@@ -1,8 +1,13 @@
 \name{NEWS}
 \title{News for Package 'aakmisc'}
+\section{Changes in aakmisc version 0.16-1}{
+  \itemize{
+    \item \code{bake} and \code{stew} have been moved to \pkg{pomp}.
+  }
+}
 \section{Changes in aakmisc version 0.15-1}{
   \itemize{
-    \item New \code{broil} function.
+    \item New \code{stew} function (similar to \code{bake}).
   }
 }
 \section{Changes in aakmisc version 0.12-1}{
