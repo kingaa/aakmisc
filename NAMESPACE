@@ -1,5 +1,19 @@
-import(DBI,RPostgreSQL,ggplot2,grid,plyr,reshape2,magrittr,methods)
+import(methods)
+importFrom(graphics,hist)
+importFrom(grDevices,grey)
+importFrom(stats,runif)
+importFrom(utils,head)
 importFrom(curl,curl)
+importFrom(DBI,dbDisconnect,dbGetQuery,dbUnloadDriver,dbDriver)
+importFrom(RPostgreSQL,dbConnect,dbWriteTable)
+importFrom(grid,frameGrob,gList,gTree,gpar,grid.draw,grid.layout,
+           grid.newpage,packGrob,placeGrob,pointsGrob,
+           popViewport,pushViewport,rectGrob,textGrob,unit,
+           viewport,xaxisGrob,yaxisGrob)
+import(ggplot2)
+import(reshape2)
+import(plyr)
+import(magrittr)
 
 export(
        getMLEs,recMLEs,
