@@ -58,8 +58,7 @@ writeDBTable(name, value, overwrite = FALSE, append = FALSE,
              user = getOption("aakmisc.user",NULL),
              \dots)
 startTunnel(port = NULL,
-            remotehost = getOption("aakmisc.remotehost",
-                                   "kinglab.eeb.lsa.umich.edu"),
+            remotehost = getOption("aakmisc.remotehost",NULL),
             sleep = 5)
 stopTunnel(..., pid = getOption("aakmisc.tunnelpid",NULL))
 }

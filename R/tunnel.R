@@ -1,11 +1,10 @@
 startTunnel <- function (port = NULL,
-                         remotehost = getOption("aakmisc.remotehost",
-                           "kinglab.eeb.lsa.umich.edu"),
+                         remotehost = getOption("aakmisc.remotehost", NULL),
                          sleep = 5) {
   if (is.null(port))
     port <- ceiling(runif(n=1,min=49151,max=65535))
   if (is.null(remotehost))
-    stop("must specify ",sQuote("remotehost"))
+    stop(sQuote("remotehost")," unspecified")
   ## stop any existing ssh tunnel
   pid <- getOption("aakmisc.tunnelpid",NULL)
   if (!is.null(pid)) stopTunnel(pid=pid)

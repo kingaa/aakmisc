@@ -2,7 +2,8 @@ if (.Platform$OS.type == "unix") {
 
   library(aakmisc)
 
-  options(aakmisc.dbname="ouchsim")
+  options(aakmisc.dbname="ouchsim",
+          aakmisc.remotehost="kinglab.eeb.lsa.umich.edu")
 
   startTunnel()
 
