@@ -11,6 +11,7 @@ importFrom(grid,frameGrob,gList,gTree,gpar,grid.draw,grid.layout,
            popViewport,pushViewport,rectGrob,textGrob,unit,
            viewport,xaxisGrob,yaxisGrob)
 import(ggplot2)
+import(scales)
 import(reshape2)
 import(plyr)
 import(magrittr)
