@@ -1,4 +1,6 @@
-# aakmisc
+## aakmisc
 
-Miscellaneous facilities I've found useful, gathered into one place.
+[![Build Status](https://travis-ci.org/kingaa/aakmisc.svg?branch=master)](https://travis-ci.org/kingaa/aakmisc)
+
+Miscellaneous useful facilities, gathered into one place.
 
