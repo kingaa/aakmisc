@@ -1,4 +1,4 @@
-if (.Platform$OS.type == "unix") {
+if (.Platform$OS.type == "unix" && Sys.getenv("FULL_TESTS")=="yes") {
 
   library(aakmisc)
 
