@@ -8,10 +8,9 @@ importFrom(DBI,dbDisconnect,dbGetQuery,dbUnloadDriver,dbDriver)
 importFrom(RPostgreSQL,dbConnect,dbWriteTable)
 importFrom(grid,frameGrob,gList,gTree,gpar,grid.draw,grid.layout,
            grid.newpage,packGrob,placeGrob,pointsGrob,
-           popViewport,pushViewport,rectGrob,textGrob,unit,
+           popViewport,pushViewport,rectGrob,textGrob,
            viewport,xaxisGrob,yaxisGrob)
 import(ggplot2)
-import(scales)
 import(reshape2)
 import(plyr)
 import(magrittr)

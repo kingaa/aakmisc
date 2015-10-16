@@ -1,15 +1,15 @@
 Package: aakmisc
 Type: Package
 Title: Miscellany for the King Lab
-Version: 0.18-1
-Date: 2015-09-23
+Version: 0.19-1
+Date: 2015-10-16
 Maintainer: Aaron A. King <kingaa@umich.edu>
 Authors@R: c(person(given=c("Aaron","A."),family="King",role=c("aut","cre"),email="kingaa@umich.edu"))
 Description: Miscellaneous tools, collected in one place.
 URL: http://github.com/kingaa/aakmisc
 Contact: kingaa at umich dot edu
 BugReports: http://github.com/kingaa/aakmisc/issues
-Depends: R(>= 3.0.0), plyr, reshape2, ggplot2, scales, grid, magrittr
+Depends: R(>= 3.0.0), plyr, reshape2, ggplot2(>=1.0.1.9003), grid, magrittr
 Imports: methods, curl, DBI, RPostgreSQL
 License: GPL(>=3)
 LazyLoad: true
