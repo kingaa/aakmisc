@@ -1,3 +1,4 @@
 language: r
 sudo: required
-r_github_packages: hadley/ggplot2
+r_github_packages: 
+  - hadley/ggplot2
