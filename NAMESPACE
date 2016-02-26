@@ -1,4 +1,8 @@
 import(methods)
+import(reshape2)
+import(plyr)
+import(magrittr)
+import(ggplot2)
 importFrom(graphics,hist)
 importFrom(grDevices,grey)
 importFrom(stats,runif)
@@ -10,10 +14,6 @@ importFrom(grid,frameGrob,gList,gTree,gpar,grid.draw,grid.layout,
            grid.newpage,packGrob,placeGrob,pointsGrob,
            popViewport,pushViewport,rectGrob,textGrob,
            viewport,xaxisGrob,yaxisGrob)
-import(ggplot2)
-import(reshape2)
-import(plyr)
-import(magrittr)
 
 export(
        getMLEs,recMLEs,
