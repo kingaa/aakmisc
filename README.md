@@ -5,3 +5,15 @@
 
 Miscellaneous useful facilities, gathered into one place.
 
+#### Binary install
+
+```
+install.packages("aakmisc",repos="http://kingaa.github.io/")
+```
+
+#### Source install
+
+```
+library(devtools)  
+install_github("kingaa/aakmisc")
+```
