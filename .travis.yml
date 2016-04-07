@@ -14,7 +14,7 @@ notifications:
 matrix:
   include:
     - os: linux
-      env: RVERSION=3.1.0
+      env: RVERSION=3.0.0
     - os: linux
       env: RVERSION=release
     - os: linux
