@@ -1,10 +1,5 @@
 language: r
 sudo: false
-r_github_packages: 
-  - hadley/ggplot2
-
-before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then curl -O http://kingaa.github.io/scripts/mac-fortran.sh; sh mac-fortran.sh; fi
 
 notifications:
   email:
