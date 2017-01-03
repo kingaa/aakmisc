@@ -1,5 +1,11 @@
 \name{NEWS}
 \title{News for Package 'aakmisc'}
+\section{Changes in aakmisc version 0.21-1}{
+  \itemize{
+    \item Codes for lazy-loading \pkg{knitr} caches have been added.
+    These useful functions are shamelessly cadged from Peter DeWitt's \pkg{qwrap2} package.
+  }
+}
 \section{Changes in aakmisc version 0.16-1}{
   \itemize{
     \item \code{bake} and \code{stew} have been moved to \pkg{pomp}.

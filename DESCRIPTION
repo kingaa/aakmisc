@@ -1,8 +1,8 @@
 Package: aakmisc
 Type: Package
 Title: Miscellany for the King Lab
-Version: 0.20-1
-Date: 2016-02-26
+Version: 0.21-1
+Date: 2017-01-03
 Maintainer: Aaron A. King <kingaa@umich.edu>
 Authors@R: c(person(given=c("Aaron","A."),family="King",role=c("aut","cre"),email="kingaa@umich.edu"))
 Description: Miscellaneous tools, collected in one place.
@@ -14,4 +14,4 @@ Imports: methods, curl, DBI, RPostgreSQL
 License: GPL(>=3)
 LazyLoad: true
 LazyData: true
-Collate: aaa.R db.R tunnel.R random.R plotMatrix.R scinot.R
+Collate: aaa.R db.R tunnel.R random.R plotMatrix.R scinot.R lazy_load.R

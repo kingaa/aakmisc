@@ -1,5 +1,11 @@
 _N_e_w_s _f_o_r _P_a_c_k_a_g_e '_a_a_k_m_i_s_c'
 
+_C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._2_1-_1:
+
+        • Codes for lazy-loading ‘knitr’ caches have been added.  These
+          useful functions are shamelessly cadged from Peter DeWitt's
+          ‘qwrap2’ package.
+
 _C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._1_6-_1:
 
         • ‘bake’ and ‘stew’ have been moved to ‘pomp’.
