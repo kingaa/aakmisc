@@ -5,7 +5,8 @@
   Format using scientific notation.
 }
 \usage{
-scinot(x, digits = 2, format = c("expression","latex","math"))
+scinot(x, digits = 2, format = c("expression","latex","math"),
+       simplify = FALSE)
 }
 \arguments{
   \item{x}{
@@ -19,6 +20,10 @@ scinot(x, digits = 2, format = c("expression","latex","math"))
     \code{type="expression"} results in an R expression.
     \code{type="latex"} results in a latex expression.
     \code{type="math"} is like "latex" but wraps the text in "$".
+  }
+  \item{simplify}{
+    logical.
+    If \code{simplify=TRUE}, then \eqn{1 \times 10^n}{1x10^n} is simplified to \eqn{10^n}{10^n}.
   }
 }
 \examples{
