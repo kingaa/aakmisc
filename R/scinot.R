@@ -1,30 +1,33 @@
 scinot <- function (x, digits = 2, format = c("expression","latex","math"),
-                    simplify = FALSE) {
-  if (length(x) > 1)
-    warning("only the first element of ",sQuote("x")," will be formatted")
+  simplify = FALSE) {
+  digits <- as.integer(digits)
   format <- match.arg(format)
-  x <- signif(as.numeric(x[1]),digits=digits)
-  ch <- floor(log10(abs(x)))
-  mn <- x/10^ch
-  switch(
+  simplify <- as.logical(simplify)
+  x <- signif(as.numeric(x),digits=digits)
+  sfun <- function (x) {
+    ch <- floor(log10(x))
+    mn <- x/10^ch
+    switch(
       format,
       expression={
-          if (mn == 1)
-              bquote(10^.(ch))
-          else
-              bquote(.(mn)%*%10^.(ch))
+        if (simplify && mn == 1)
+          bquote(10^.(ch))
+        else
+          bquote(.(mn)%*%10^.(ch))
       },
       latex={
-          if (mn == 1)
-              paste0("10$^{",ch,"}$")
-          else
-              paste0("{",mn,"}{$\\times$}10$^{",ch,"}$")
+        if (simplify && mn == 1)
+          paste0("10$^{",ch,"}$")
+        else
+          paste0("{",mn,"}{$\\times$}10$^{",ch,"}$")
       },
       math={
-          if (mn == 1)
-              paste0("$10^{",ch,"}$")
-          else
-              paste0("${",mn,"}{\\times}10^{",ch,"}$")
+        if (simplify && mn == 1)
+          paste0("$10^{",ch,"}$")
+        else
+          paste0("${",mn,"}{\\times}10^{",ch,"}$")
       }
-  )
+    )
+  }
+  sapply(x,sfun)
 }
