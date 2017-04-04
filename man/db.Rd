@@ -59,6 +59,7 @@ writeDBTable(name, value, overwrite = FALSE, append = FALSE,
              \dots)
 startTunnel(port = NULL,
             remotehost = getOption("aakmisc.remotehost",NULL),
+            user = getOption("aakmisc.user",NULL),
             sleep = 5)
 stopTunnel(..., pid = getOption("aakmisc.tunnelpid",NULL))
 }

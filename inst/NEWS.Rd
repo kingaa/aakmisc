@@ -1,5 +1,10 @@
 \name{NEWS}
 \title{News for Package 'aakmisc'}
+\section{Changes in aakmisc version 0.23-1}{
+  \itemize{
+    \item \code{startTunnel} now takes a \code{user} option.
+  }
+}
 \section{Changes in aakmisc version 0.21-1}{
   \itemize{
     \item Codes for lazy-loading \pkg{knitr} caches have been added.

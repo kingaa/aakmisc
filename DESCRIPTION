@@ -1,8 +1,8 @@
 Package: aakmisc
 Type: Package
 Title: Miscellany for the King Lab
-Version: 0.22-3
-Date: 2017-01-17
+Version: 0.23-1
+Date: 2017-04-04
 Maintainer: Aaron A. King <kingaa@umich.edu>
 Authors@R: c(person(given=c("Aaron","A."),family="King",role=c("aut","cre"),email="kingaa@umich.edu"))
 Description: Miscellaneous tools, collected in one place.

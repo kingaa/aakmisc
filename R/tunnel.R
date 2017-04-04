@@ -1,16 +1,20 @@
 startTunnel <- function (port = NULL,
                          remotehost = getOption("aakmisc.remotehost", NULL),
+                         user = getOption("aakmisc.user", NULL),
                          sleep = 5) {
   if (is.null(port))
     port <- ceiling(runif(n=1,min=49151,max=65535))
   if (is.null(remotehost))
     stop(sQuote("remotehost")," unspecified")
+  if (is.null(user))
+    user <- Sys.getenv("USER")
   ## stop any existing ssh tunnel
   pid <- getOption("aakmisc.tunnelpid",NULL)
   if (!is.null(pid)) stopTunnel(pid=pid)
   ## start ssh tunnel and record pid
   pidfile <- tempfile()
-  cmd <- paste0("ssh -NL ",port,":localhost:5432 ",
+  cmd <- paste0("ssh -NL ",port,":localhost:5432",
+                " -l ",user," ",
                 remotehost," & echo $! > ",pidfile)
   system(cmd)
   pid <- scan(pidfile,what=integer(0),quiet=TRUE)
