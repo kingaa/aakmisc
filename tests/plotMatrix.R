@@ -1,4 +1,6 @@
 library(aakmisc)
+library(plyr)
+library(grid)
 
 x <- data.frame(a=rexp(n=1000,rate=1/3),b=rnorm(1000))
 mutate(x,c=a+b^2,d=a-b^3) -> x
