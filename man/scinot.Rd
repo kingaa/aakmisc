@@ -10,7 +10,7 @@ scinot(x, digits = 2, format = c("expression","latex","math"),
 }
 \arguments{
   \item{x}{
-    Number to format.
+    Number(s) to format.
   }
   \item{digits}{
     Number of significant digits in mantissa.
@@ -27,9 +27,12 @@ scinot(x, digits = 2, format = c("expression","latex","math"),
   }
 }
 \examples{
-x <- c(0.0309595,8577676.441)
+x <- c(0.0309595,8577676.441,10000)
 scinot(x[2],4)
 scinot(x[1],2,"latex")
 sapply(x,scinot,digits=3,format='math')
+scinot(x,digits=0,simplify=FALSE)
+scinot(x,digits=0,simplify=TRUE)
 }
+\seealso{\code{\link[scales]{scientific}}}
 \author{Aaron A. King \email{kingaa at umich dot edu}}
