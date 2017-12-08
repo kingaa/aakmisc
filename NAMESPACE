@@ -6,11 +6,12 @@ importFrom(utils,head)
 importFrom(curl,curl)
 importFrom(DBI,dbDisconnect,dbGetQuery,dbUnloadDriver,dbDriver)
 importFrom(RPostgreSQL,dbConnect,dbWriteTable)
-importFrom(plyr,ldply)
 importFrom(grid,frameGrob,gList,gTree,gpar,grid.draw,grid.layout,
            grid.newpage,packGrob,placeGrob,pointsGrob,
            popViewport,pushViewport,rectGrob,textGrob,
            viewport,xaxisGrob,yaxisGrob,unit)
+importFrom(plyr,ldply)
+importFrom(ggplot2,theme_set)
 
 export(
        getMLEs,recMLEs,

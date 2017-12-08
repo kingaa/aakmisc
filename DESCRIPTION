@@ -10,8 +10,8 @@ URL: http://github.com/kingaa/aakmisc
 Contact: kingaa at umich dot edu
 BugReports: http://github.com/kingaa/aakmisc/issues
 Depends: R(>= 3.3.1)
-Imports: methods, grid, curl, DBI, RPostgreSQL, plyr
-Suggests: ggplot2, scales, magrittr, reshape2, readr
+Imports: methods, grid, curl, DBI, RPostgreSQL, plyr, ggplot2
+Suggests: scales, magrittr, reshape2, readr
 License: GPL-3
 LazyLoad: true
 LazyData: true
