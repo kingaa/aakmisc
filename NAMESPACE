@@ -23,7 +23,7 @@ export(
        random.org,urandom,
        rngControl,rngSeeds,
        plotMatrix,
-       scinot,
+       scinot,trnc,
        lazyload_cache_dir,lazyload_cache_labels
        )
 
