@@ -1,42 +1,66 @@
 _N_e_w_s _f_o_r _P_a_c_k_a_g_e '_a_a_k_m_i_s_c'
 
-_C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._2_3-_1:
+_C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._2_6:
+
+        • The package no longer automatically loads ‘ggplot2’,
+          ‘scales’, ‘grid’, ‘plyr’, ‘reshape2’, ‘magrittr’, and
+          ‘readr’.
+
+        • ‘scinot’ is now suitable for use in ‘ggplot::scale_X_Y’.
+
+        • The new function ‘trnc’ allows truncation to the plot window
+          when used in ‘ggplot::scale_X_Y’.
+
+_C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._2_5:
+
+        • The license under which the software is provided has been
+          upgraded to GPL version 3.
+
+        • Package ‘readr’ is a new dependency and ‘scales’ is
+          explicitly imported.
+
+_C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._2_4:
+
+        • The license under which the software is provided has been
+          upgraded to GPL version 3.
+
+_C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._2_3:
 
         • ‘startTunnel’ now takes a ‘user’ option.
 
-_C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._2_1-_1:
+_C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._2_1:
 
         • Codes for lazy-loading ‘knitr’ caches have been added.  These
           useful functions are shamelessly cadged from Peter DeWitt's
           ‘qwrap2’ package.
 
-_C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._1_6-_1:
+_C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._1_6:
 
         • ‘bake’ and ‘stew’ have been moved to ‘pomp’.
 
-_C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._1_5-_1:
+_C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._1_5:
 
         • New ‘stew’ function (similar to ‘bake’).
 
-_C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._1_2-_1:
+_C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._1_2:
 
         • On attachment, the default ‘ggplot2’ theme is ‘theme_bw()’.
 
-_C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._1_1-_1:
+_C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._1_1:
 
         • New ‘bake’ function.
 
-_C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._1_0-_1:
+_C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._1_0:
 
         • A new ‘scinot’ function for formatting numbers in scientific
           notation.
 
-_C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._9-_1:
+_C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._9:
 
         • There is a new ‘plotMatrix’ method for generating scatterplot
           matrices and density plots from data-frames.
 
-_C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._8-_4:
+_C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._8:
 
         • will attempt to clean up ssh tunnel processes on exit from R
 
