@@ -1,0 +1,227 @@
+
+R version 3.4.2 (2017-09-28) -- "Short Summer"
+Copyright (C) 2017 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(aakmisc)
+setting ‘stringsAsFactors=FALSE’
+> 
+> set.seed(2015734481)
+> 
+> png(filename="misc-%01d.png",res=100)
+> 
+> x <- c(-13994,49994,0.00003459,1499595e12,0,1,2,-0.5,NA)
+> 
+> scinot(x,digits=3)
+[[1]]
+-1.4 %*% 10^4
+
+[[2]]
+5 %*% 10^4
+
+[[3]]
+3.46 %*% 10^-5
+
+[[4]]
+1.5 %*% 10^18
+
+[[5]]
+expression(0)
+
+[[6]]
+1 %*% 10^0
+
+[[7]]
+2 %*% 10^0
+
+[[8]]
+-5 %*% 10^-1
+
+[[9]]
+expression(NA)
+
+> scinot(x,digits=1,simplify=TRUE)
+[[1]]
+-1 %*% 10^4
+
+[[2]]
+5 %*% 10^4
+
+[[3]]
+3 %*% 10^-5
+
+[[4]]
+10^18
+
+[[5]]
+expression(0)
+
+[[6]]
+10^0
+
+[[7]]
+2 %*% 10^0
+
+[[8]]
+-5 %*% 10^-1
+
+[[9]]
+expression(NA)
+
+> scinot(x,digits=0)
+[[1]]
+-1 %*% 10^4
+
+[[2]]
+5 %*% 10^4
+
+[[3]]
+3 %*% 10^-5
+
+[[4]]
+1 %*% 10^18
+
+[[5]]
+expression(0)
+
+[[6]]
+1 %*% 10^0
+
+[[7]]
+2 %*% 10^0
+
+[[8]]
+-5 %*% 10^-1
+
+[[9]]
+expression(NA)
+
+> scinot(x,digits=0,simplify=TRUE)
+[[1]]
+-1 %*% 10^4
+
+[[2]]
+5 %*% 10^4
+
+[[3]]
+3 %*% 10^-5
+
+[[4]]
+10^18
+
+[[5]]
+expression(0)
+
+[[6]]
+10^0
+
+[[7]]
+2 %*% 10^0
+
+[[8]]
+-5 %*% 10^-1
+
+[[9]]
+expression(NA)
+
+> scinot(x,digits=3,format="latex")
+[1] "{-1.4}{$\\times$}10$^{4}$"  "{5}{$\\times$}10$^{4}$"    
+[3] "{3.46}{$\\times$}10$^{-5}$" "{1.5}{$\\times$}10$^{18}$" 
+[5] "0"                          "{1}{$\\times$}10$^{0}$"    
+[7] "{2}{$\\times$}10$^{0}$"     "{-5}{$\\times$}10$^{-1}$"  
+[9] "NA"                        
+> scinot(x,digits=1,simplify=TRUE,format="latex")
+[1] "{-1}{$\\times$}10$^{4}$"  "{5}{$\\times$}10$^{4}$"  
+[3] "{3}{$\\times$}10$^{-5}$"  "10$^{18}$"               
+[5] "0"                        "10$^{0}$"                
+[7] "{2}{$\\times$}10$^{0}$"   "{-5}{$\\times$}10$^{-1}$"
+[9] "NA"                      
+> scinot(x,digits=0,format="latex")
+[1] "{-1}{$\\times$}10$^{4}$"  "{5}{$\\times$}10$^{4}$"  
+[3] "{3}{$\\times$}10$^{-5}$"  "{1}{$\\times$}10$^{18}$" 
+[5] "0"                        "{1}{$\\times$}10$^{0}$"  
+[7] "{2}{$\\times$}10$^{0}$"   "{-5}{$\\times$}10$^{-1}$"
+[9] "NA"                      
+> scinot(x,digits=0,simplify=TRUE,format="latex")
+[1] "{-1}{$\\times$}10$^{4}$"  "{5}{$\\times$}10$^{4}$"  
+[3] "{3}{$\\times$}10$^{-5}$"  "10$^{18}$"               
+[5] "0"                        "10$^{0}$"                
+[7] "{2}{$\\times$}10$^{0}$"   "{-5}{$\\times$}10$^{-1}$"
+[9] "NA"                      
+> scinot(x,digits=3,format="math")
+[1] "${-1.4}{\\times}10^{4}$"  "${5}{\\times}10^{4}$"    
+[3] "${3.46}{\\times}10^{-5}$" "${1.5}{\\times}10^{18}$" 
+[5] "0"                        "${1}{\\times}10^{0}$"    
+[7] "${2}{\\times}10^{0}$"     "${-5}{\\times}10^{-1}$"  
+[9] "NA"                      
+> scinot(x,digits=1,simplify=TRUE,format="math")
+[1] "${-1}{\\times}10^{4}$"  "${5}{\\times}10^{4}$"   "${3}{\\times}10^{-5}$" 
+[4] "$10^{18}$"              "0"                      "$10^{0}$"              
+[7] "${2}{\\times}10^{0}$"   "${-5}{\\times}10^{-1}$" "NA"                    
+> scinot(x,digits=0,format="math")
+[1] "${-1}{\\times}10^{4}$"  "${5}{\\times}10^{4}$"   "${3}{\\times}10^{-5}$" 
+[4] "${1}{\\times}10^{18}$"  "0"                      "${1}{\\times}10^{0}$"  
+[7] "${2}{\\times}10^{0}$"   "${-5}{\\times}10^{-1}$" "NA"                    
+> scinot(x,digits=0,simplify=TRUE,format="math")
+[1] "${-1}{\\times}10^{4}$"  "${5}{\\times}10^{4}$"   "${3}{\\times}10^{-5}$" 
+[4] "$10^{18}$"              "0"                      "$10^{0}$"              
+[7] "${2}{\\times}10^{0}$"   "${-5}{\\times}10^{-1}$" "NA"                    
+> 
+> trnc(x)
+[1] 0.000e+00 1.000e+00 3.459e-05 1.000e+00 0.000e+00 1.000e+00 1.000e+00
+[8] 0.000e+00        NA
+> trnc(x,range=c(-1,1))
+[1] -1.000e+00  1.000e+00  3.459e-05  1.000e+00  0.000e+00  1.000e+00  1.000e+00
+[8] -5.000e-01         NA
+> trnc(x,range=c(0,2),only.finite=TRUE)
+[1] 0.000e+00 2.000e+00 3.459e-05 2.000e+00 0.000e+00 1.000e+00 2.000e+00
+[8] 0.000e+00        NA
+> trnc(x,only.finite=TRUE)
+[1] 0.000e+00 1.000e+00 3.459e-05 1.000e+00 0.000e+00 1.000e+00 1.000e+00
+[8] 0.000e+00        NA
+> 
+> library(ggplot2)
+> library(magrittr)
+> 
+> data.frame(
++   x=1:1000,
++   y=exp(cumsum(rnorm(1000,0,1)))
++ ) %>%
++   ggplot(aes(x=x,y=y))+
++   geom_line()+
++   scale_y_log10(limits=c(2,20),oob=trnc)
+> 
+> data.frame(
++   x=1:1000,
++   y=exp(cumsum(rnorm(1000,0,1)))
++ ) %>%
++   ggplot(aes(x=x,y=y))+
++   geom_line()+
++   scale_y_log10(labels=scinot)
+> 
+> data.frame(
++   x=1:1000,
++   y=exp(cumsum(rnorm(1000,0,1)))
++ ) %>%
++   ggplot(aes(x=x,y=y))+
++   geom_line()+
++   scale_y_log10(labels=function(x)scinot(x,digits=0,simplify=T))
+> 
+> dev.off()
+null device 
+          1 
+> 

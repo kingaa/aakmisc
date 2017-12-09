@@ -15,7 +15,7 @@ demos.Rout: $(DEMOS)
 	$(RCMD) BATCH --no-timing --no-save $*.R $*.Rout
 
 clean:
-	$(RM) *.c *.o *.so 
+	$(RM) *.c *.o *.so *.pdf
 
 fresh: clean
 	$(RM) *.png

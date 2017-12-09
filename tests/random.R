@@ -6,6 +6,11 @@ if (.Platform$OS.type == "unix") {
   seed <- 7968868L
 }
 
+if (Sys.getenv("FULL_TESTS")=="yes") {
+  x <- random.org(5)
+  stopifnot(is.integer(x) && length(x)==5)
+}
+
 set.seed(seed)
 rngSeeds(5,seed=seed)
 
