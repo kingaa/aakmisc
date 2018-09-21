@@ -5,13 +5,15 @@
 ##' @name scinot
 ##' @rdname scinot
 ##'
-##' @param x Number(s) to format.
-##' @param digits Number of significant digits in mantissa.
-##' @param format Format specification.  \code{type="expression"} results in an
-##' R expression.  \code{type="latex"} results in a latex expression.
-##' \code{type="math"} is like "latex" but wraps the text in "$".
-##' @param simplify logical.  If \code{simplify=TRUE}, then \eqn{1 \times
-##' 10^n}{1x10^n} is simplified to \eqn{10^n}{10^n}.
+##' @param x number(s) to format.
+##' @param digits number of significant digits in mantissa.
+##' @param format format specification.
+##' \code{format="expression"} results in an R expression.
+##' \code{format="latex"} results in a latex expression.
+##' \code{format="math"} is like "latex" but wraps the text in "$".
+##' @param simplify logical.
+##' If \code{simplify=TRUE}, then \eqn{1 \times 10^n}{1x10^n} is simplified to \eqn{10^n}{10^n}.
+##'
 ##' @author Aaron A. King
 ##' @seealso \code{\link[scales]{scientific}}
 ##' @examples

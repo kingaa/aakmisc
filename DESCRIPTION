@@ -7,11 +7,11 @@ Maintainer: Aaron A. King <kingaa@umich.edu>
 Authors@R: c(person(given=c("Aaron","A."),family="King",role=c("aut","cre"),email="kingaa@umich.edu"))
 Description: Miscellaneous tools, collected in one place.
 URL: http://github.com/kingaa/aakmisc
-Contact: kingaa at umich dot edu
+Contact: <kingaa@umich.edu>
 BugReports: http://github.com/kingaa/aakmisc/issues
 Depends: R(>= 3.4.0)
 Imports: methods, grid, curl, DBI, RPostgreSQL, plyr, ggplot2
-Suggests: scales, magrittr, reshape2, readr
+Suggests: scales, magrittr
 License: GPL-3
 LazyLoad: true
 LazyData: true
@@ -21,6 +21,7 @@ Collate:
     'tunnel.R'
     'aaa.R'
     'lazyload.R'
+    'matrix2latex.R'
     'plotMatrix.R'
     'random.R'
     'scinot.R'

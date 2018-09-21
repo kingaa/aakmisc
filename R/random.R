@@ -1,24 +1,25 @@
 ##' Functions for generating and working with truly random integers.
-##' 
+##'
 ##' Functions for generating and working with truly random seeds.
-##' 
+##'
 ##' @name random
 ##' @rdname random
 ##' @aliases random.org urandom rngControl rngSeeds
 ##' @include aaa.R
 ##' @importFrom stats runif
-##' 
+##' @importFrom curl curl
+##'
 ##' @param n Number of integers required.
 ##' @param rnd random.org parameter
 ##' @param expr Expression to be evaluated with RNG control.
 ##' @param seed RNG seed.
-##' 
+##'
 ##' @return integers suitable for use as RNG seeds
-##' 
+##'
 ##' @author Aaron A. King
 ##' @references \url{http://www.random.org}
 ##' @examples
-##' 
+##'
 ##'   \dontrun{
 ##'   random.org(n=5)
 ##'   seed <- urandom(n=1)
@@ -32,7 +33,7 @@
 ##'   runif(5)
 ##'   runif(5)
 ##'   }
-##' 
+##'
 NULL
 
 
@@ -40,9 +41,9 @@ NULL
 ##' @rdname random
 ##' @details
 ##' \code{random.org} gets seeds from \url{random.org}.
-##' 
+##'
 ##' @export
-##' 
+##'
 random.org <- function (n = 10, rnd = "new") {
   template <- "https://www.random.org/integers/?num=%d&min=%d&max=%d&col=%d&base=%d&format=plain&rnd=%s"
   base <- 2
@@ -92,7 +93,7 @@ rngControl <- function (expr, seed = NULL) {
 ##' \code{rngSeeds} generates RNG seeds using \code{\link[stats]{runif}}.
 ##' It is included for situations when neither \code{\link{random.org}} nor \code{\link{urandom}} is available.
 ##' @export
-##' 
+##'
 rngSeeds <- function (n, seed = NULL) {
   rngControl(
              as.integer(floor(runif(n=n,min=1,max=2^31))),

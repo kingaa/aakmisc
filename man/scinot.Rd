@@ -8,16 +8,17 @@ scinot(x, digits = 2, format = c("expression", "latex", "math"),
   simplify = FALSE)
 }
 \arguments{
-\item{x}{Number(s) to format.}
+\item{x}{number(s) to format.}
 
-\item{digits}{Number of significant digits in mantissa.}
+\item{digits}{number of significant digits in mantissa.}
 
-\item{format}{Format specification.  \code{type="expression"} results in an
-R expression.  \code{type="latex"} results in a latex expression.
-\code{type="math"} is like "latex" but wraps the text in "$".}
+\item{format}{format specification.
+\code{format="expression"} results in an R expression.
+\code{format="latex"} results in a latex expression.
+\code{format="math"} is like "latex" but wraps the text in "$".}
 
-\item{simplify}{logical.  If \code{simplify=TRUE}, then \eqn{1 \times
-10^n}{1x10^n} is simplified to \eqn{10^n}{10^n}.}
+\item{simplify}{logical.
+If \code{simplify=TRUE}, then \eqn{1 \times 10^n}{1x10^n} is simplified to \eqn{10^n}{10^n}.}
 }
 \description{
 Format using scientific notation.
