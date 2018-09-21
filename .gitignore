@@ -1,9 +1,0 @@
-.gitignore
-.Rproj.user
-aakmisc.Rproj
-*.o
-*.so
-*.gcda
-*.gcno
-tests/*.Rout
-tests/*.pdf
