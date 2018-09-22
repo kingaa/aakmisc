@@ -38,8 +38,6 @@ htmldocs: inst/doc/*.html
 vignettes: manual install
 	$(MAKE)	-C www/vignettes
 
-news: www/NEWS.html
-
 NEWS: inst/NEWS
 
 inst/NEWS: inst/NEWS.Rd
@@ -48,12 +46,15 @@ inst/NEWS: inst/NEWS.Rd
 www/NEWS.html: inst/NEWS.Rd
 	$(RCMD) Rdconv -t html inst/NEWS.Rd -o www/NEWS.html
 
+help: $(SOURCE)
+	$(REXE) -e "devtools::document(roclets=c('rd','collate','namespace'))"
+
 dist: NEWS $(PKGVERS).tar.gz
 
 $(PKGVERS).tar.gz: $(SOURCE)
 	$(RCMD) build --force --no-manual --resave-data --compact-vignettes=both --md5 .
 
-publish: dist manual news
+publish: dist manual
 	$(RSCRIPT) -e 'drat::insertPackage("$(PKGVERS).tar.gz",repodir="../www",action="prune")'
 	-$(RSCRIPT) -e 'drat::insertPackage("$(PKGVERS).tgz",repodir="../www",action="prune")'
 	-$(RSCRIPT) -e 'drat::insertPackage("$(PKGVERS).zip",repodir="../www",action="prune")'
