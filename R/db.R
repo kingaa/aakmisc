@@ -1,3 +1,44 @@
+##' Interface with databases
+##'
+##' Interface with project databases.
+##'
+##' @name db
+##' @rdname db
+##'
+##' @param host Hostname on which to connect to the PostgreSQL server.
+##' @param dbname Name of PostgreSQL database.
+##' @param port Port on which to connect to PostgreSQL database.  If NULL, a
+##' random port number will be used.
+##' @param user Username to use in conneting to PostgreSQL database.  If NULL,
+##' Sys.getenv("USER") will be used.
+##' @param mle A data-frame of MLEs to be recorded.
+##' @param files Files containing R scripts to be recorded.
+##' @param script Name of script.
+##' @param file File to which the script will be written.  See
+##' \code{\link{cat}}.
+##' @param statement SQL statement passed to \code{\link[DBI]{dbGetQuery}}.
+##' @param name,value Name and contents of table to create.
+##' @param overwrite,append,row.names See \code{\link[DBI]{dbWriteTable}}.
+##' @param \dots Additional arguments will be passed to
+##' \code{\link[DBI]{dbConnect}}.
+##' @author Aaron A. King
+##' @examples
+##'
+##' \dontrun{
+##' startTunnel()
+##' listScripts()
+##' stopTunnel()
+##' }
+##'
+##' @import methods
+##' @importFrom DBI dbDisconnect dbGetQuery dbUnloadDriver dbDriver
+##' @importFrom RPostgreSQL dbConnect dbWriteTable
+##' @importFrom plyr ldply
+NULL
+
+##' @name writeDBTable
+##' @rdname db
+##' @export
 writeDBTable <- function (name, value,
   overwrite = FALSE, append = FALSE, row.names = FALSE,
   host = getOption("aakmisc.dbhost","localhost"),
@@ -29,6 +70,9 @@ writeDBTable <- function (name, value,
   )
 }
 
+##' @name getQuery
+##' @rdname db
+##' @export
 getQuery <- function (statement,
   host = getOption("aakmisc.dbhost","localhost"),
   dbname = getOption("aakmisc.dbname",NULL),
@@ -50,6 +94,9 @@ getQuery <- function (statement,
   dbGetQuery(db,statement=statement)
 }
 
+##' @name getMLEs
+##' @rdname db
+##' @export
 getMLEs <- function (host = getOption("aakmisc.dbhost","localhost"),
   dbname = getOption("aakmisc.dbname",NULL),
   port=getOption("aakmisc.port",5432),
@@ -70,6 +117,9 @@ getMLEs <- function (host = getOption("aakmisc.dbhost","localhost"),
   dbGetQuery(db,"select * from mle")
 }
 
+##' @name recMLEs
+##' @rdname db
+##' @export
 recMLEs <- function (mle,
   host = getOption("aakmisc.dbhost","localhost"),
   dbname = getOption("aakmisc.dbname",NULL),
@@ -98,6 +148,9 @@ recMLEs <- function (mle,
   dbWriteTable(db,"mle",mle,append=TRUE,row.names=FALSE)
 }
 
+##' @name recScript
+##' @rdname db
+##' @export
 recScript <- function (files,
   host = getOption("aakmisc.dbhost","localhost"),
   dbname = getOption("aakmisc.dbname",NULL),
@@ -140,6 +193,9 @@ recScript <- function (files,
   cat("recorded scripts:",def$script,sep="\n")
 }
 
+##' @name dropScript
+##' @rdname db
+##' @export
 dropScript <- function (script,
   host = getOption("aakmisc.dbhost","localhost"),
   dbname = getOption("aakmisc.dbname",NULL),
@@ -166,6 +222,9 @@ dropScript <- function (script,
   cat("recorded scripts:",def$script,sep="\n")
 }
 
+##' @name listScripts
+##' @rdname db
+##' @export
 listScripts <- function (host = getOption("aakmisc.dbhost","localhost"),
   dbname = getOption("aakmisc.dbname",NULL),
   port=getOption("aakmisc.port",5432),
@@ -187,6 +246,9 @@ listScripts <- function (host = getOption("aakmisc.dbhost","localhost"),
   cat("recorded scripts:",def$script,sep="\n")
 }
 
+##' @name catScript
+##' @rdname db
+##' @export
 catScript <- function (script, file = "",
   host = getOption("aakmisc.dbhost","localhost"),
   dbname = getOption("aakmisc.dbname",NULL),
