@@ -36,14 +36,12 @@
 ##'
 NULL
 
-
 ##' @name random.org
 ##' @rdname random
 ##' @details
 ##' \code{random.org} gets seeds from \url{random.org}.
 ##'
 ##' @export
-##'
 random.org <- function (n = 10, rnd = "new") {
   template <- "https://www.random.org/integers/?num=%d&min=%d&max=%d&col=%d&base=%d&format=plain&rnd=%s"
   base <- 2
@@ -58,7 +56,7 @@ random.org <- function (n = 10, rnd = "new") {
   strtoi(apply(dat,1,paste,collapse=""),base=base)
 }
 
-##' @name random.org
+##' @name urandom
 ##' @rdname random
 ##' @details
 ##' \code{urandom} gets seeds locally from \file{/dev/urandom} on *nix systems.
@@ -93,10 +91,9 @@ rngControl <- function (expr, seed = NULL) {
 ##' \code{rngSeeds} generates RNG seeds using \code{\link[stats]{runif}}.
 ##' It is included for situations when neither \code{\link{random.org}} nor \code{\link{urandom}} is available.
 ##' @export
-##'
 rngSeeds <- function (n, seed = NULL) {
-  rngControl(
-             as.integer(floor(runif(n=n,min=1,max=2^31))),
-             seed=seed
-             )
+    rngControl(
+        as.integer(floor(runif(n=n,min=1,max=2^31))),
+        seed=seed
+    )
 }
