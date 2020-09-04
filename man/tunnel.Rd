@@ -7,8 +7,12 @@
 \alias{cleanup}
 \title{ssh tunneling}
 \usage{
-startTunnel(port = NULL, remotehost = getOption("aakmisc.remotehost",
-  NULL), user = getOption("aakmisc.user", NULL), sleep = 5)
+startTunnel(
+  port = NULL,
+  remotehost = getOption("aakmisc.remotehost", NULL),
+  user = getOption("aakmisc.user", NULL),
+  sleep = 5
+)
 
 stopTunnel(..., pid = getOption("aakmisc.tunnelpid", NULL))
 }

@@ -9,12 +9,25 @@
 \usage{
 plotMatrix(data, ...)
 
-\method{plotMatrix}{list}(data, marg.exp = 0.02, labels = names(data),
-  alpha = 1, pch = 16, size = unit(2, "mm"), ...)
+\method{plotMatrix}{list}(
+  data,
+  marg.exp = 0.02,
+  labels = names(data),
+  alpha = 1,
+  pch = 16,
+  size = unit(2, "mm"),
+  ...
+)
 
-\method{plotMatrix}{data.frame}(data, marg.exp = 0.02,
-  labels = names(data), alpha = 1, pch = 16, size = unit(2, "mm"),
-  ...)
+\method{plotMatrix}{data.frame}(
+  data,
+  marg.exp = 0.02,
+  labels = names(data),
+  alpha = 1,
+  pch = 16,
+  size = unit(2, "mm"),
+  ...
+)
 
 \method{print}{aakplot}(x, newpage = is.null(vp), vp = NULL, ...)
 }

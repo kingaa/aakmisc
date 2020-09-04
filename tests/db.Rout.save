@@ -1,6 +1,6 @@
 
-R version 3.5.1 (2018-07-02) -- "Feather Spray"
-Copyright (C) 2018 The R Foundation for Statistical Computing
+R version 4.0.2 (2020-06-22) -- "Taking Off Again"
+Copyright (C) 2020 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -21,12 +21,15 @@ Type 'q()' to quit R.
 + 
 +   library(aakmisc)
 + 
-+   options(aakmisc.dbname="ouchsim",
-+           aakmisc.remotehost="kinglab.eeb.lsa.umich.edu")
++   options(
++     aakmisc.dbname="vandy",
++     aakmisc.remotehost="kinglab.eeb.lsa.umich.edu"
++   )
 + 
 +   startTunnel()
 + 
-+   print(getQuery("select painting,seed,id from fits where id < 10"))
++   x <- getQuery("select day,count from paramecia where experiment='BlPc'")
++   print(mean(x$count))
 + 
 +   stopTunnel()
 + 

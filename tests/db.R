@@ -2,12 +2,15 @@ if (.Platform$OS.type == "unix" && Sys.getenv("FULL_TESTS")=="yes") {
 
   library(aakmisc)
 
-  options(aakmisc.dbname="ouchsim",
-          aakmisc.remotehost="kinglab.eeb.lsa.umich.edu")
+  options(
+    aakmisc.dbname="vandy",
+    aakmisc.remotehost="kinglab.eeb.lsa.umich.edu"
+  )
 
   startTunnel()
 
-  print(getQuery("select painting,seed,id from fits where id < 10"))
+  x <- getQuery("select day,count from paramecia where experiment='BlPc'")
+  print(mean(x$count))
 
   stopTunnel()
 

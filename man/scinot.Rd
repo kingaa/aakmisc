@@ -4,8 +4,12 @@
 \alias{scinot}
 \title{Scientific notation.}
 \usage{
-scinot(x, digits = 2, format = c("expression", "latex", "math"),
-  simplify = FALSE)
+scinot(
+  x,
+  digits = 2,
+  format = c("expression", "latex", "math"),
+  simplify = FALSE
+)
 }
 \arguments{
 \item{x}{number(s) to format.}

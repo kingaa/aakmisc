@@ -12,46 +12,80 @@
 \alias{catScript}
 \title{Interface with databases}
 \usage{
-writeDBTable(name, value, overwrite = FALSE, append = FALSE,
-  row.names = FALSE, host = getOption("aakmisc.dbhost", "localhost"),
+writeDBTable(
+  name,
+  value,
+  overwrite = FALSE,
+  append = FALSE,
+  row.names = FALSE,
+  host = getOption("aakmisc.dbhost", "localhost"),
   dbname = getOption("aakmisc.dbname", NULL),
   port = getOption("aakmisc.port", 5432),
-  user = getOption("aakmisc.user", NULL), ...)
+  user = getOption("aakmisc.user", NULL),
+  ...
+)
 
-getQuery(statement, host = getOption("aakmisc.dbhost", "localhost"),
+getQuery(
+  statement,
+  host = getOption("aakmisc.dbhost", "localhost"),
   dbname = getOption("aakmisc.dbname", NULL),
   port = getOption("aakmisc.port", 5432),
-  user = getOption("aakmisc.user", NULL), ...)
+  user = getOption("aakmisc.user", NULL),
+  ...
+)
 
-getMLEs(host = getOption("aakmisc.dbhost", "localhost"),
+getMLEs(
+  host = getOption("aakmisc.dbhost", "localhost"),
   dbname = getOption("aakmisc.dbname", NULL),
   port = getOption("aakmisc.port", 5432),
-  user = getOption("aakmisc.user", NULL), ...)
+  user = getOption("aakmisc.user", NULL),
+  ...
+)
 
-recMLEs(mle, host = getOption("aakmisc.dbhost", "localhost"),
+recMLEs(
+  mle,
+  host = getOption("aakmisc.dbhost", "localhost"),
   dbname = getOption("aakmisc.dbname", NULL),
   port = getOption("aakmisc.port", 5432),
-  user = getOption("aakmisc.user", NULL), ...)
+  user = getOption("aakmisc.user", NULL),
+  ...
+)
 
-recScript(files, host = getOption("aakmisc.dbhost", "localhost"),
+recScript(
+  files,
+  host = getOption("aakmisc.dbhost", "localhost"),
   dbname = getOption("aakmisc.dbname", NULL),
   port = getOption("aakmisc.port", 5432),
-  user = getOption("aakmisc.user", NULL), ...)
+  user = getOption("aakmisc.user", NULL),
+  ...
+)
 
-dropScript(script, host = getOption("aakmisc.dbhost", "localhost"),
+dropScript(
+  script,
+  host = getOption("aakmisc.dbhost", "localhost"),
   dbname = getOption("aakmisc.dbname", NULL),
   port = getOption("aakmisc.port", 5432),
-  user = getOption("aakmisc.user", NULL), ...)
+  user = getOption("aakmisc.user", NULL),
+  ...
+)
 
-listScripts(host = getOption("aakmisc.dbhost", "localhost"),
+listScripts(
+  host = getOption("aakmisc.dbhost", "localhost"),
   dbname = getOption("aakmisc.dbname", NULL),
   port = getOption("aakmisc.port", 5432),
-  user = getOption("aakmisc.user", NULL), ...)
+  user = getOption("aakmisc.user", NULL),
+  ...
+)
 
-catScript(script, file = "", host = getOption("aakmisc.dbhost",
-  "localhost"), dbname = getOption("aakmisc.dbname", NULL),
+catScript(
+  script,
+  file = "",
+  host = getOption("aakmisc.dbhost", "localhost"),
+  dbname = getOption("aakmisc.dbname", NULL),
   port = getOption("aakmisc.port", 5432),
-  user = getOption("aakmisc.user", NULL), ...)
+  user = getOption("aakmisc.user", NULL),
+  ...
+)
 }
 \arguments{
 \item{name, value}{Name and contents of table to create.}

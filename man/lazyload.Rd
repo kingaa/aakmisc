@@ -6,13 +6,24 @@
 \alias{lazyload_cache_labels}
 \title{Functions for lazy-loading knitr caches.}
 \usage{
-lazyload_cache_dir(path = "./cache", envir = parent.frame(),
-  ask = FALSE, verbose = getOption("verbose", FALSE),
-  full.names = TRUE, ...)
+lazyload_cache_dir(
+  path = "./cache",
+  envir = parent.frame(),
+  ask = FALSE,
+  verbose = getOption("verbose", FALSE),
+  full.names = TRUE,
+  ...
+)
 
-lazyload_cache_labels(labels, path = "./cache/",
-  envir = parent.frame(), verbose = getOption("verbose", FALSE),
-  filter, full.names = TRUE, ...)
+lazyload_cache_labels(
+  labels,
+  path = "./cache/",
+  envir = parent.frame(),
+  verbose = getOption("verbose", FALSE),
+  filter,
+  full.names = TRUE,
+  ...
+)
 }
 \arguments{
 \item{path}{the path to the cache directory}

@@ -1,6 +1,6 @@
 
-R version 3.5.1 (2018-07-02) -- "Feather Spray"
-Copyright (C) 2018 The R Foundation for Statistical Computing
+R version 4.0.2 (2020-06-22) -- "Taking Off Again"
+Copyright (C) 2020 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -27,117 +27,17 @@ setting ‘stringsAsFactors=FALSE’
 > x <- c(-13994,49994,0.00003459,1499595e12,0,1,2,-0.5,NA)
 > 
 > scinot(x,digits=3)
-[[1]]
--1.4 %*% 10^4
-
-[[2]]
-5 %*% 10^4
-
-[[3]]
-3.46 %*% 10^-5
-
-[[4]]
-1.5 %*% 10^18
-
-[[5]]
-expression(0)
-
-[[6]]
-1 %*% 10^0
-
-[[7]]
-2 %*% 10^0
-
-[[8]]
--5 %*% 10^-1
-
-[[9]]
-expression(NA)
-
+expression(-1.4 %*% 10^4, 5 %*% 10^4, 3.46 %*% 10^-5, 1.5 %*% 
+    10^18, 0, 1 %*% 10^0, 2 %*% 10^0, -5 %*% 10^-1, NA)
 > scinot(x,digits=1,simplify=TRUE)
-[[1]]
--1 %*% 10^4
-
-[[2]]
-5 %*% 10^4
-
-[[3]]
-3 %*% 10^-5
-
-[[4]]
-10^18
-
-[[5]]
-expression(0)
-
-[[6]]
-10^0
-
-[[7]]
-2 %*% 10^0
-
-[[8]]
--5 %*% 10^-1
-
-[[9]]
-expression(NA)
-
+expression(-1 %*% 10^4, 5 %*% 10^4, 3 %*% 10^-5, 10^18, 0, 10^0, 
+    2 %*% 10^0, -5 %*% 10^-1, NA)
 > scinot(x,digits=0)
-[[1]]
--1 %*% 10^4
-
-[[2]]
-5 %*% 10^4
-
-[[3]]
-3 %*% 10^-5
-
-[[4]]
-1 %*% 10^18
-
-[[5]]
-expression(0)
-
-[[6]]
-1 %*% 10^0
-
-[[7]]
-2 %*% 10^0
-
-[[8]]
--5 %*% 10^-1
-
-[[9]]
-expression(NA)
-
+expression(-1 %*% 10^4, 5 %*% 10^4, 3 %*% 10^-5, 1 %*% 10^18, 
+    0, 1 %*% 10^0, 2 %*% 10^0, -5 %*% 10^-1, NA)
 > scinot(x,digits=0,simplify=TRUE)
-[[1]]
--1 %*% 10^4
-
-[[2]]
-5 %*% 10^4
-
-[[3]]
-3 %*% 10^-5
-
-[[4]]
-10^18
-
-[[5]]
-expression(0)
-
-[[6]]
-10^0
-
-[[7]]
-2 %*% 10^0
-
-[[8]]
--5 %*% 10^-1
-
-[[9]]
-expression(NA)
-
+expression(-1 %*% 10^4, 5 %*% 10^4, 3 %*% 10^-5, 10^18, 0, 10^0, 
+    2 %*% 10^0, -5 %*% 10^-1, NA)
 > scinot(x,digits=3,format="latex")
 [1] "{-1.4}{$\\times$}10$^{4}$"  "{5}{$\\times$}10$^{4}$"    
 [3] "{3.46}{$\\times$}10$^{-5}$" "{1.5}{$\\times$}10$^{18}$" 
