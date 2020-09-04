@@ -1,5 +1,16 @@
 \name{NEWS}
 \title{News for Package 'aakmisc'}
+\section{Changes in aakmisc version 0.28}{
+  \itemize{
+    \item Problem with \code{scinot} has been fixed.
+    \item \pkg{aakmisc} now requires \R version 4 or later.
+  }
+}
+\section{Changes in aakmisc version 0.27}{
+  \itemize{
+    \item New \code{matrix2latex} function.
+  }
+}
 \section{Changes in aakmisc version 0.26}{
   \itemize{
     \item The package no longer automatically loads \pkg{ggplot2}, \pkg{scales}, \pkg{grid}, \pkg{plyr}, \pkg{reshape2}, \pkg{magrittr}, and \pkg{readr}.
