@@ -34,4 +34,6 @@ Type 'q()' to quit R.
 +   stopTunnel()
 + 
 + }
+setting ‘stringsAsFactors=FALSE’
+[1] 123.9848
 > 
