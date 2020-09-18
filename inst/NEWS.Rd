@@ -1,5 +1,10 @@
 \name{NEWS}
 \title{News for Package 'aakmisc'}
+\section{Changes in aakmisc version 0.29}{
+  \itemize{
+    \item Add \code{numbers2words}, cadged from Andy Teuchen.
+  }
+}
 \section{Changes in aakmisc version 0.28}{
   \itemize{
     \item Problem with \code{scinot} has been fixed.
