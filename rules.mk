@@ -45,7 +45,7 @@ htmlhelp: install news manual
 	rsync --delete --exclude=aliases.rds --exclude=paths.rds --exclude=$(PKG).rdb --exclude=$(PKG).rdx --exclude=macros -a library/$(PKG)/help/ $(MANUALDIR)/help
 	(cd $(MANUALDIR); (cat links.ed && echo w ) | ed - html/00Index.html)
 	$(CP) $(PKG).pdf $(MANUALDIR)
-	$(CP) ../www/_includes/pompstyle.css $(MANUALDIR)/html/R.css
+	$(CP) ../www/assets/R.css $(MANUALDIR)/html
 
 vignettes: manual install
 	$(MAKE)	-C www/vignettes
@@ -96,7 +96,7 @@ covr.rds: DESCRIPTION
 	$(REXE) -e 'library(covr); package_coverage(type="all") -> cov; report(cov,file="covr.html",browse=TRUE); saveRDS(cov,file="covr.rds")'
 
 xcovr: covr
-	$(REXE) -e 'library(covr); readRDS("covr.rds") -> cov; codecov(coverage=cov,token="cbbc302d-fff3-4530-8474-0f3f48db6776",quiet=FALSE)'
+	$(REXE) -e 'library(covr); readRDS("covr.rds") -> cov; codecov(coverage=cov,token="$(TOKEN)",quiet=FALSE)'
 
 win: dist
 	curl -T $(PKGVERS).tar.gz ftp://win-builder.r-project.org/R-release/
