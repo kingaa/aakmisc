@@ -57,7 +57,7 @@ runif(5)
 
 }
 \references{
-\url{http://www.random.org}
+\url{https://www.random.org}
 }
 \author{
 Aaron A. King

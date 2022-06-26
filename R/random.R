@@ -16,7 +16,7 @@
 ##' @return integers suitable for use as RNG seeds
 ##'
 ##' @author Aaron A. King
-##' @references \url{http://www.random.org}
+##' @references \url{https://www.random.org}
 ##' @examples
 ##'
 ##' random.org(n=5)
@@ -53,15 +53,25 @@ random.org <- function (n = 10, rnd = "new") {
   strtoi(apply(dat,1,paste,collapse=""),base=base)
 }
 
+## Local random-device interface
+## Only available on *nix platforms
+if (.Platform$OS.type=="unix") {
+  urandom_internal <- function (n = 10) {
+    as.integer(abs(readBin("/dev/urandom",what=integer(0),n=n)))
+  }
+} else {
+  urandom_internal <- function (n = 10) {
+    rngSeeds(n=n)
+  }
+}
+
 ##' @name urandom
 ##' @rdname random
 ##' @details
 ##' \code{urandom} gets seeds locally from \file{/dev/urandom} on *nix systems.
 ##'
 ##' @export
-urandom <- function (n = 10) {
-  as.integer(abs(readBin("/dev/urandom",what=integer(0),n=n))) #nocov
-}
+urandom <- urandom_internal
 
 ##' @name rngControl
 ##' @rdname random
