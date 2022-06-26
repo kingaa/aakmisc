@@ -120,13 +120,11 @@ Sys.getenv("USER") will be used.}
 Interface with project databases.
 }
 \examples{
-
 \dontrun{
 startTunnel()
 listScripts()
 stopTunnel()
 }
-
 }
 \author{
 Aaron A. King

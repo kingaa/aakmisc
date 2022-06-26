@@ -1,5 +1,10 @@
 \name{NEWS}
 \title{News for Package 'aakmisc'}
+\section{Changes in aakmisc version 0.30}{
+  \itemize{
+    \item \code{rngSeeds} now uses \code{sample} instead of \code{runif}, eliminating the potential for a documented source of bias.
+  }
+}
 \section{Changes in aakmisc version 0.29}{
   \itemize{
     \item Add \code{numbers2words}, cadged from Andy Teuchen.

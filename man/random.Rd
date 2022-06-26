@@ -38,7 +38,7 @@ Functions for generating and working with truly random seeds.
 
 \code{rngControl} is a function to control RNG for the evaluation of an expression.
 
-\code{rngSeeds} generates RNG seeds using \code{\link[stats]{runif}}.
+\code{rngSeeds} generates RNG seeds using \code{\link{sample.int}}.
 It is included for situations when neither \code{\link{random.org}} nor \code{\link{urandom}} is available.
 }
 \examples{

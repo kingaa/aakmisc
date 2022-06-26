@@ -23,13 +23,11 @@
 ##' \code{\link[DBI]{dbConnect}}.
 ##' @author Aaron A. King
 ##' @examples
-##'
 ##' \dontrun{
 ##' startTunnel()
 ##' listScripts()
 ##' stopTunnel()
 ##' }
-##'
 ##' @import methods
 ##' @importFrom DBI dbDisconnect dbGetQuery dbUnloadDriver dbDriver
 ##' @importFrom RPostgreSQL dbConnect dbWriteTable
