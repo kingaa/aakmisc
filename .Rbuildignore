@@ -10,7 +10,8 @@ TODO\.md$
 ^codecov\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-\.Rprofile
+^\.Rprofile$
+^\.github$
 Makefile
 rules.mk
 lib

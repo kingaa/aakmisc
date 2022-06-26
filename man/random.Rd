@@ -43,19 +43,17 @@ It is included for situations when neither \code{\link{random.org}} nor \code{\l
 }
 \examples{
 
-  \dontrun{
-  random.org(n=5)
-  seed <- urandom(n=1)
-  seeds <- rngSeeds(5,seed=seed)
-  set.seed(seed)
-  runif(5)
-  rngControl(runif(5),seed=seed[1])
-  rngControl(runif(5),seed=seed[1])
-  runif(5)
-  set.seed(seed)
-  runif(5)
-  runif(5)
-  }
+random.org(n=5)
+seed <- urandom(n=1)
+seeds <- rngSeeds(5,seed=seed)
+set.seed(seed)
+runif(5)
+rngControl(runif(5),seed=seed[1])
+rngControl(runif(5),seed=seed[1])
+runif(5)
+set.seed(seed)
+runif(5)
+runif(5)
 
 }
 \references{

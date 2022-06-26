@@ -28,6 +28,3 @@ trnc(c(-1,0.5,1,2,NA))
 \seealso{
 \code{\link[scales]{censor}}
 }
-\author{
-Aaron A. King \email{kingaa at umich dot edu}
-}

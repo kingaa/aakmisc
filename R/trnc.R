@@ -11,7 +11,6 @@
 ##' @param x Numeric vector of values to manipulate.
 ##' @param range Numeric vector of length two giving desired output range.
 ##' @param only.finite if TRUE (the default), will only modify finite values.
-##' @author Aaron A. King \email{kingaa at umich dot edu}
 ##' @seealso \code{\link[scales]{censor}}
 ##' @examples
 ##'

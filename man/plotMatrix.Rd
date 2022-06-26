@@ -75,6 +75,3 @@ print(plotMatrix(as.list(x),alpha=0.2,breaks='scott'))
   }
 
 }
-\author{
-Aaron A. King \email{kingaa at umich dot edu}
-}

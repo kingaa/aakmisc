@@ -15,7 +15,6 @@
 ##' @param newpage logical; if \code{TRUE}, \code{grid.newpage()} will be called
 ##' before the graphics are drawn.
 ##' @param vp viewport to use.  See \code{\link[grid]{viewport}}.
-##' @author Aaron A. King \email{kingaa at umich dot edu}
 ##' @examples
 ##'
 ##'   \dontrun{

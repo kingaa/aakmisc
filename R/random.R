@@ -19,19 +19,17 @@
 ##' @references \url{http://www.random.org}
 ##' @examples
 ##'
-##'   \dontrun{
-##'   random.org(n=5)
-##'   seed <- urandom(n=1)
-##'   seeds <- rngSeeds(5,seed=seed)
-##'   set.seed(seed)
-##'   runif(5)
-##'   rngControl(runif(5),seed=seed[1])
-##'   rngControl(runif(5),seed=seed[1])
-##'   runif(5)
-##'   set.seed(seed)
-##'   runif(5)
-##'   runif(5)
-##'   }
+##' random.org(n=5)
+##' seed <- urandom(n=1)
+##' seeds <- rngSeeds(5,seed=seed)
+##' set.seed(seed)
+##' runif(5)
+##' rngControl(runif(5),seed=seed[1])
+##' rngControl(runif(5),seed=seed[1])
+##' runif(5)
+##' set.seed(seed)
+##' runif(5)
+##' runif(5)
 ##'
 NULL
 
@@ -62,7 +60,7 @@ random.org <- function (n = 10, rnd = "new") {
 ##'
 ##' @export
 urandom <- function (n = 10) {
-  as.integer(abs(readBin("/dev/urandom",what=integer(0),n=n)))
+  as.integer(abs(readBin("/dev/urandom",what=integer(0),n=n))) #nocov
 }
 
 ##' @name rngControl
@@ -74,7 +72,7 @@ urandom <- function (n = 10) {
 rngControl <- function (expr, seed = NULL) {
   expr <- substitute(expr)
   if (!is.null(seed)) {
-    if (!exists(".Random.seed",envir=.GlobalEnv)) runif(1)
+    if (!exists(".Random.seed",envir=.GlobalEnv)) runif(1) #nocov
     save.seed <- get('.Random.seed',envir=.GlobalEnv)
     set.seed(seed)
   }

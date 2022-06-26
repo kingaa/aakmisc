@@ -10,8 +10,8 @@ NULL
 
 .cleanup.ssh.tunnel <- function (...) {
   if (!is.null(getOption("aakmisc.tunnelpid",NULL))) {
-    message("terminating ssh tunnel")
-    stopTunnel()
+    message("terminating ssh tunnel") #nocov
+    stopTunnel() #nocov
   }
 }
 
