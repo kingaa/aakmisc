@@ -31,7 +31,7 @@
 ##' @import methods
 ##' @importFrom DBI dbDisconnect dbGetQuery dbUnloadDriver dbDriver
 ##' @importFrom RPostgreSQL dbConnect dbWriteTable
-##' @importFrom plyr ldply
+##' @importFrom dplyr bind_rows
 NULL
 
 ##' @name writeDBTable
@@ -167,15 +167,16 @@ recScript <- function (files,
   on.exit(dbDisconnect(db))
   on.exit(dbUnloadDriver(drv),add=TRUE)
 
-  plyr::ldply(
-    files,
-    function (f) {
-      data.frame(
-        script=gsub("\\.R$","",f),
-        code=readChar(f,nchars=file.info(f)$size)
-      )
-    }
-  ) -> new
+  files |>
+    lapply(
+      \(f) {
+        data.frame(
+          script=gsub("\\.R$","",f),
+          code=readChar(f,nchars=file.info(f)$size)
+        )
+      }
+    ) |>
+    bind_rows() -> new
 
   dbGetQuery(db,"select script from scripts") -> old
   overlap <- new$script%in%old$script

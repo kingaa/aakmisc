@@ -1,5 +1,9 @@
 _N_e_w_s _f_o_r _P_a_c_k_a_g_e '_a_a_k_m_i_s_c'
 
+_C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._3_1:
+
+        • We no longer import from the deprecated ‘plyr’ package.
+
 _C_h_a_n_g_e_s _i_n _a_a_k_m_i_s_c _v_e_r_s_i_o_n _0._3_0:
 
         • ‘rngSeeds’ now uses ‘sample’ instead of ‘runif’, eliminating

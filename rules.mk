@@ -1,10 +1,6 @@
-REXE = R --vanilla
-RSESSION = emacs -f R
+REXE = R -s
 RCMD = $(REXE) CMD
-RCMD_ALT = R --no-save --no-restore CMD
-RSCRIPT = Rscript --vanilla
-REPODIR = ../www
-MANUALDIR = ../www/manuals/$(PKG)
+MANUALDIR = $(REPODIR)/manuals/$(PKG)
 
 PDFLATEX = pdflatex
 BIBTEX = bibtex
@@ -18,81 +14,112 @@ INSTALL = install
 PKG = $(shell perl -ne 'print $$1 if /Package:\s+((\w+[-\.]?)+)/;' DESCRIPTION)
 VERSION = $(shell perl -ne 'print $$1 if /Version:\s+((\d+[-\.]?)+)/;' DESCRIPTION)
 PKGVERS = $(PKG)_$(VERSION)
-SOURCE=$(sort $(wildcard R/*R src/*.c src/*.h data/*))
-CSOURCE=$(sort $(wildcard src/*.c))
-TESTS=$(sort $(wildcard tests/*R))
+TARBALL = $(PKGVERS).tar.gz
+SOURCE = $(sort $(wildcard R/*R src/*.c src/*.h data/* examples/*))
+CSOURCE = $(sort $(wildcard src/*.c))
+TESTS = $(sort $(wildcard tests/*R))
+SESSION_PKGS = datasets,utils,grDevices,graphics,stats,methods,tidyverse,$(PKG)
 
-default:
+.PHONY: .check check clean covr debug default fresh \
+htmlhelp manual publish qcheck qqcheck \
+rhub rsession session win wind xcheck \
+xcovr vcheck ycheck
+
+.dist manual: export R_QPDF=qpdf
+.headers: export LC_COLLATE=C
+.roxy .headers .dist manual: export R_HOME=$(shell $(REXE) RHOME)
+.check: export FULL_TESTS=yes
+.dist .tests .session .check: export R_KEEP_PKG_SOURCE=yes
+.session .tests .check: export R_PROFILE_USER=$(CURDIR)/.Rprofile
+.tests .session vcheck manual: export R_LIBS=$(CURDIR)/library
+.check: export R_CHECK_ENVIRON=$(CURDIR)/tools/check.env
+session: RSESSION = emacs -f R
+debug: RSESSION = R -d gdb
+rsession: RSESSION = R
+
+default: .roxy .NEWS .source .includes .headers
 	@echo $(PKGVERS)
 
-.PHONY: binary check clean covr default dist fresh headers htmldocs \
-htmlhelp includes install manual news NEWS publish qcheck qqcheck \
-remove revdeps rhub roxy session tests vignettes win wind xcheck \
-xcovr xxcheck ycheck
+roxy: .roxy
 
-dist manual vignettes: export R_QPDF=qpdf
-headers: export LC_COLLATE=C
-roxy headers dist manual vignettes: export R_HOME=$(shell $(REXE) RHOME)
-check xcheck xxcheck: export FULL_TESTS=yes
-dist revdeps session tests check xcheck xxcheck: export R_KEEP_PKG_SOURCE=yes
-revdeps xcheck tests: export R_PROFILE_USER=$(CURDIR)/.Rprofile
-revdeps session xxcheck htmldocs vignettes data tests manual: export R_LIBS=$(CURDIR)/library
-session: export R_DEFAULT_PACKAGES=datasets,utils,grDevices,graphics,stats,methods,tidyverse,$(PKG)
-xcheck: export _R_CHECK_DEPENDS_ONLY_=true
+dist: .dist
 
-inst/include/%.h: src/%.h
-	$(CP) $^ $@
+install: .install
 
-htmldocs: inst/doc/*.html
+COMMON_CHECK_ARGS = document=FALSE,vignettes=FALSE,clean_doc=FALSE,check_dir="check"
 
-htmlhelp: install news manual
+check: CHECK = devtools::check($(COMMON_CHECK_ARGS),cran=FALSE)
+qcheck: CHECK = devtools::check($(COMMON_CHECK_ARGS),cran=FALSE,\
+args=c("--no-tests"))
+qqcheck: CHECK = devtools::check($(COMMON_CHECK_ARGS),cran=FALSE,\
+args=c("--no-tests","--no-codoc","--no-examples"))
+xcheck: CHECK = devtools::check($(COMMON_CHECK_ARGS),cran=TRUE,\
+env_vars=c("_R_CHECK_DEPENDS_ONLY_"="TRUE"))
+ycheck: CHECK = devtools::check($(COMMON_CHECK_ARGS),cran=TRUE,\
+args=c("--run-dontrun","--run-donttest"))
+
+INSTALLCMD = devtools::install(args=c("--preclean","--html","--library=library"))
+
+check xcheck ycheck qcheck qqcheck: .check
+
+vcheck: check/$(PKG).Rcheck/$(PKG)-Ex.R
+	$(REXE) -d "valgrind -s --tool=memcheck --track-origins=yes --leak-check=full"\
+	< $^ 2>&1 | tee $(PKG)-Ex.Rout
+
+NEWS: .NEWS
+
+.NEWS: inst/NEWS
+	$(TOUCH) $@
+
+.headers: $(HEADERS)
+	$(TOUCH) $@
+
+.includes: $(INCLUDES)
+	$(TOUCH) $@
+
+.source: $(SOURCE)
+	$(TOUCH) $@
+
+.testsource: $(TESTS)
+	$(TOUCH) $@
+
+.roxy: .source .headers
+	$(REXE) -e "devtools::document()"
+	$(TOUCH) $@
+
+.check: .roxy .NEWS .includes
+	$(REXE) -e '$(CHECK)'
+
+.dist: .roxy .NEWS .testsource .includes
+	$(RCMD) build --force --no-manual --resave-data --compact-vignettes=both --md5 .
+	$(TOUCH) $@
+
+.install: .roxy .NEWS .source .includes .headers
+	mkdir -p library
+	$(REXE) -e '$(INSTALLCMD)'
+	$(RCMD) Rdconv -t html inst/NEWS.Rd -o library/$(PKG)/html/NEWS.html
+	$(TOUCH) .install
+
+.session: .install
+	export R_DEFAULT_PACKAGES=$(SESSION_PKGS) && \
+	exec $(RSESSION)
+
+inst/NEWS: inst/NEWS.Rd
+	$(RCMD) Rdconv -t txt $^ -o $@
+
+htmlhelp: install manual
 	rsync --delete -a library/$(PKG)/html/ $(MANUALDIR)/html
 	rsync --delete --exclude=aliases.rds --exclude=paths.rds --exclude=$(PKG).rdb --exclude=$(PKG).rdx --exclude=macros -a library/$(PKG)/help/ $(MANUALDIR)/help
 	(cd $(MANUALDIR); (cat links.ed && echo w ) | ed - html/00Index.html)
 	$(CP) $(PKG).pdf $(MANUALDIR)
 	$(CP) $(REPODIR)/assets/R.css $(MANUALDIR)/html
 
-vignettes: manual install
-	$(MAKE)	-C www/vignettes
-
-news: library/$(PKG)/html/NEWS.html
-
-NEWS: inst/NEWS
-
-inst/NEWS: inst/NEWS.Rd
-	$(RCMD) Rdconv -t txt $^ -o $@
-
-library/$(PKG)/html/NEWS.html: inst/NEWS.Rd
-	$(RCMD) Rdconv -t html $^ -o $@
-
-session: install
-	exec $(RSESSION)
-
-debug: RSESSION = R -d gdb
-debug: session
-
-revdeps: install
-	mkdir -p library check
-	$(REXE) -e "pkgs <- strsplit('$(REVDEPS)',' ')[[1]]; download.packages(pkgs,destdir='library',repos='https://mirrors.nics.utk.edu/cran/')"
-	$(RCMD) check --as-cran --library=library -o check library/*.tar.gz
-
-roxy: $(SOURCE) headers
-	$(REXE) -e "pkgbuild::compile_dll(); devtools::document(roclets=c('rd','collate','namespace'))"
-
-dist: NEWS $(PKGVERS).tar.gz
-
-$(PKGVERS).tar.gz: $(SOURCE) $(TESTS) includes headers
-	$(RCMD) build --force --no-manual --resave-data --compact-vignettes=both --md5 .
-
-binary: dist
-	mkdir -p plib
-	$(RCMD) INSTALL --build --library=plib --preclean --clean $(PKGVERS).tar.gz
-	rm -rf plib
+session debug rsession: .session
 
 publish: dist manual htmlhelp
-	$(RSCRIPT) -e 'drat::insertPackage("$(PKGVERS).tar.gz",repodir="$(REPODIR)",action="prune")'
-	-$(RSCRIPT) -e 'drat::insertPackage("$(PKGVERS).tgz",repodir="$(REPODIR)",action="prune")'
-	-$(RSCRIPT) -e 'drat::insertPackage("$(PKGVERS).zip",repodir="$(REPODIR)",action="prune")'
+	$(REXE) -e 'drat::insertPackage("$(PKGVERS).tar.gz",repodir="$(REPODIR)",action="prune")'
+	-$(REXE) -e 'drat::insertPackage("$(PKGVERS).tgz",repodir="$(REPODIR)",action="prune")'
+	-$(REXE) -e 'drat::insertPackage("$(PKGVERS).zip",repodir="$(REPODIR)",action="prune")'
 
 rhub:
 	$(REXE) -e 'library(rhub); check_for_cran(); check_on_windows(); check(platform="macos-highsierra-release-cran");'
@@ -103,69 +130,36 @@ covr.rds: DESCRIPTION
 	$(REXE) -e 'library(covr); package_coverage(type="all") -> cov; report(cov,file="covr.html",browse=TRUE); saveRDS(cov,file="covr.rds")'
 
 xcovr: covr
-	$(REXE) -e 'library(covr); readRDS("covr.rds") -> cov; codecov(coverage=cov,token="$(TOKEN)",quiet=FALSE)'
+	$(REXE) -e 'library(covr); readRDS("covr.rds") -> cov; codecov(coverage=cov,quiet=FALSE)'
 
 win: dist
-	curl -T $(PKGVERS).tar.gz ftp://win-builder.r-project.org/R-release/
+	curl -T $(TARBALL) ftp://win-builder.r-project.org/R-release/
 
 wind: dist
-	curl -T $(PKGVERS).tar.gz ftp://win-builder.r-project.org/R-devel/
-
-check: dist
-	mkdir -p check
-	$(RCMD) check --no-stop-on-test-error --library=check -o check $(PKGVERS).tar.gz
-
-qcheck: dist
-	mkdir -p check
-	$(RCMD) check --library=check -o check --no-vignettes --no-tests $(PKGVERS).tar.gz
-
-qqcheck: dist
-	mkdir -p check
-	$(RCMD) check --library=check -o check --no-codoc --no-examples --no-vignettes --no-manual --no-tests $(PKGVERS).tar.gz
-
-xcheck: dist
-	mkdir -p check library
-	$(RCMD_ALT) check --no-stop-on-test-error --as-cran --library=library -o check $(PKGVERS).tar.gz
-
-xxcheck: install xcheck
-	mkdir -p check
-	$(REXE) -d "valgrind --tool=memcheck --track-origins=yes --leak-check=full" < check/$(PKG).Rcheck/$(PKG)-Ex.R 2>&1 | tee $(PKG)-Ex.Rout
-
-ycheck: dist install
-	mkdir -p check
-	$(RCMD_ALT) check --run-dontrun --run-donttest --as-cran --library=library -o check $(PKGVERS).tar.gz
+	curl -T $(TARBALL) ftp://win-builder.r-project.org/R-devel/
 
 manual: install $(PKG).pdf
 
 $(PKG).pdf: $(SOURCE)
 	$(RCMD) Rd2pdf --internals --no-description --no-preview --pdf --force -o $(PKG).pdf .
-	$(RSCRIPT) -e "tools::compactPDF(\"$(PKG).pdf\")";
+	$(REXE) -e "tools::compactPDF(\"$(PKG).pdf\")";
 
-tests: install $(TESTS)
-	export R_LIBS
-	$(MAKE) -C tests
+tests: .tests
 
-install: library/$(PKG)
+.tests: .install .testsource
+	$(MAKE) -j10 -C tests
+	$(TOUCH) $@
 
-library/$(PKG): dist
-	mkdir -p library
-	$(RCMD) INSTALL --html --library=library $(PKGVERS).tar.gz
+install: .install
 
-remove:
-	if [ -d library ]; then \
-		$(RCMD) REMOVE --library=library $(PKG); \
-		rmdir library; \
-	fi
-
-fresh: clean remove
-
-inst/doc/*.html: install 
+inst/include/%.h: src/%.h
+	$(CP) $^ $@
 
 %.tex: %.Rnw
-	$(RSCRIPT) -e "library(knitr); knit(\"$*.Rnw\")"
+	$(REXE) -e "library(knitr); knit(\"$*.Rnw\")"
 
 %.R: %.Rnw
-	$(RSCRIPT) -e "library(knitr); purl(\"$*.Rnw\")"
+	$(REXE) -e "library(knitr); purl(\"$*.Rnw\")"
 
 %.pdf: %.tex
 	$(PDFLATEX) $*
@@ -184,11 +178,9 @@ inst/doc/*.html: install
 	$(MAKEIDX) $*
 
 %.html: %.Rmd
-	PATH=/usr/lib/rstudio/bin/pandoc:$$PATH \
 	Rscript --vanilla -e "rmarkdown::render(\"$*.Rmd\")"
 
 %.html: %.md
-	PATH=/usr/lib/rstudio/bin/pandoc:$$PATH \
 	Rscript --vanilla -e "rmarkdown::render(\"$*.md\")"
 
 %.R: %.Rmd
@@ -196,8 +188,14 @@ inst/doc/*.html: install
 
 clean:
 	$(RM) -r check
-	$(RM) src/*.o src/*.so src/symbols.rds www/vignettes/Rplots.*
-	$(RM) -r inst/doc/figure inst/doc/cache
+	$(RM) src/*.o src/*.so src/symbols.rds
 	$(RM) -r lib
-	$(RM) -r *-Ex.Rout *-Ex.timings *-Ex.pdf
+	$(RM) -r *-Ex.Rout *-Ex.timings *-Ex.pdf Rplots.*
 	$(RM) *.tar.gz $(PKGVERS).zip $(PKGVERS).tgz $(PKG).pdf
+	$(MAKE) -C tests clean
+	$(RM) .dist
+
+fresh: clean
+	$(RM) .headers .includes .NEWS
+	$(RM) .install .roxy .source .testsource .roxy .tests
+	$(RM) -r library

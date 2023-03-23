@@ -1,21 +1,17 @@
-REXE = R --vanilla
-RCMD = $(REXE) CMD
+REXE = R
 
-SAVED = $(shell ls *.Rout.save *.Rout)
-DEMOS = $(shell ls ../demo/*R)
+SAVED = $(wildcard *.Rout.save *.Rout)
 
 default: $(SAVED) clean
 
-demos.Rout: $(DEMOS)
-
 %.Rout.save: %.R
-	$(RCMD) BATCH --no-timing --no-save $*.R $*.Rout.save
+	$(REXE) < $*.R > $*.Rout.save 2>&1
 
 %.Rout: %.R
-	$(RCMD) BATCH --no-timing --no-save $*.R $*.Rout
+	$(REXE) < $*.R > $*.Rout 2>&1
 
 clean:
-	$(RM) *.c *.o *.so *.pdf
+	$(RM) *.c *.o *.so 
 
 fresh: clean
 	$(RM) *.png

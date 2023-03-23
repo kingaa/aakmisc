@@ -1,6 +1,6 @@
-library(aakmisc)
-library(plyr)
+library(dplyr)
 library(grid)
+library(aakmisc)
 
 png(filename="plotmatrix-%01d.png",res=100)
 

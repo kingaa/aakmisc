@@ -1,6 +1,6 @@
 
-R version 4.2.1 (2022-06-23) -- "Funny-Looking Kid"
-Copyright (C) 2022 The R Foundation for Statistical Computing
+R version 4.2.3 (2023-03-15) -- "Shortstop Beagle"
+Copyright (C) 2023 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -18,7 +18,7 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library(aakmisc)
-setting ‘stringsAsFactors=FALSE’
+setting 'stringsAsFactors=FALSE'
 > 
 > set.seed(2015734481)
 > 
