@@ -33,7 +33,6 @@
 ##'
 NULL
 
-##' @name random.org
 ##' @rdname random
 ##' @details
 ##' \code{random.org} gets seeds from \url{random.org}.
@@ -65,7 +64,6 @@ if (.Platform$OS.type=="unix") {
   }
 }
 
-##' @name urandom
 ##' @rdname random
 ##' @details
 ##' \code{urandom} gets seeds locally from \file{/dev/urandom} on *nix systems.
@@ -73,7 +71,6 @@ if (.Platform$OS.type=="unix") {
 ##' @export
 urandom <- urandom_internal
 
-##' @name rngControl
 ##' @rdname random
 ##' @details
 ##' \code{rngControl} is a function to control RNG for the evaluation of an expression.
@@ -93,7 +90,6 @@ rngControl <- function (expr, seed = NULL) {
   res
 }
 
-##' @name rngSeeds
 ##' @rdname random
 ##' @details
 ##' \code{rngSeeds} generates RNG seeds using \code{\link{sample.int}}.

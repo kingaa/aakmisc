@@ -4,7 +4,6 @@
 ##' @rdname tunnel
 ##' @include tunnel.R
 ##' @importFrom ggplot2 theme_set theme_bw
-##' @keywords internal
 ##'
 NULL
 

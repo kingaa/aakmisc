@@ -1,27 +1,28 @@
 ##' ssh tunneling
 ##'
-##' Setting up ssh tunnels for database access.
+##' Secure-shell (ssh) tunnels for database access.
 ##'
 ##' @name tunnel
 ##' @rdname tunnel
 ##' @inheritParams db
 ##' @include db.R
 ##'
-##' @param remotehost Hostname of PostgreSQL server.  An ssh tunnel to this host
-##' will be created.
-##' @param pid ID of ssh tunnel process.  Set automatically by
-##' \code{startTunnel}.
+##' @param remotehost Hostname of PostgreSQL server.
+##' An ssh tunnel to this host will be created.
+##' @param pid ID of ssh tunnel process.
+##' Set automatically by \code{startTunnel}.
 ##' @param sleep Time in seconds to sleep after initiating the ssh tunnel.
 ##'
 NULL
 
-##' @name startTunnel
 ##' @rdname tunnel
 ##' @export
-startTunnel <- function (port = NULL,
+startTunnel <- function (
+  port = NULL,
   remotehost = getOption("aakmisc.remotehost", NULL),
   user = getOption("aakmisc.user", NULL),
-  sleep = 5) {
+  sleep = 5
+) {
   if (is.null(port))
     port <- ceiling(runif(n=1,min=49151,max=65535))
   if (is.null(remotehost))
@@ -47,11 +48,13 @@ startTunnel <- function (port = NULL,
   invisible(list(port=port,tunnelpid=pid,remotehost=remotehost))
 }
 
-##' @name stopTunnel
 ##' @rdname tunnel
+##' @param ... Additional arguments ignored.
 ##' @export
-stopTunnel <- function (...,
-  pid = getOption("aakmisc.tunnelpid",NULL)) {
+stopTunnel <- function (
+  ...,
+  pid = getOption("aakmisc.tunnelpid",NULL)
+) {
   if (is.null(pid))
     stop("must specify ",sQuote("pid"))
   stat <- system2("kill",pid)

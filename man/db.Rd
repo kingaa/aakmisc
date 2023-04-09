@@ -102,8 +102,7 @@ random port number will be used.}
 \item{user}{Username to use in conneting to PostgreSQL database.  If NULL,
 Sys.getenv("USER") will be used.}
 
-\item{\dots}{Additional arguments will be passed to
-\code{\link[DBI]{dbConnect}}.}
+\item{...}{Additional arguments will be passed to \code{\link[DBI]{dbConnect}}.}
 
 \item{statement}{SQL statement passed to \code{\link[DBI]{dbGetQuery}}.}
 

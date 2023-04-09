@@ -20,21 +20,19 @@ stopTunnel(..., pid = getOption("aakmisc.tunnelpid", NULL))
 \item{port}{Port on which to connect to PostgreSQL database.  If NULL, a
 random port number will be used.}
 
-\item{remotehost}{Hostname of PostgreSQL server.  An ssh tunnel to this host
-will be created.}
+\item{remotehost}{Hostname of PostgreSQL server.
+An ssh tunnel to this host will be created.}
 
 \item{user}{Username to use in conneting to PostgreSQL database.  If NULL,
 Sys.getenv("USER") will be used.}
 
 \item{sleep}{Time in seconds to sleep after initiating the ssh tunnel.}
 
-\item{...}{Additional arguments will be passed to
-\code{\link[DBI]{dbConnect}}.}
+\item{...}{Additional arguments ignored.}
 
-\item{pid}{ID of ssh tunnel process.  Set automatically by
-\code{startTunnel}.}
+\item{pid}{ID of ssh tunnel process.
+Set automatically by \code{startTunnel}.}
 }
 \description{
-Setting up ssh tunnels for database access.
+Secure-shell (ssh) tunnels for database access.
 }
-\keyword{internal}

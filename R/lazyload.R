@@ -29,7 +29,6 @@
 ##' @keywords programming
 NULL
 
-##' @name lazyload_cache_dir
 ##' @rdname lazyload
 ##' @export
 lazyload_cache_dir <- function(path = "./cache", envir = parent.frame(),
@@ -66,7 +65,6 @@ lazyload_cache_dir <- function(path = "./cache", envir = parent.frame(),
   invisible(NULL)
 }
 
-##' @name lazyload_cache_labels
 ##' @rdname lazyload
 ##' @export
 lazyload_cache_labels <- function(labels, path = "./cache/", envir = parent.frame(),

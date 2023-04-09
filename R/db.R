@@ -19,8 +19,7 @@
 ##' @param statement SQL statement passed to \code{\link[DBI]{dbGetQuery}}.
 ##' @param name,value Name and contents of table to create.
 ##' @param overwrite,append,row.names See \code{\link[DBI]{dbWriteTable}}.
-##' @param \dots Additional arguments will be passed to
-##' \code{\link[DBI]{dbConnect}}.
+##' @param ... Additional arguments will be passed to \code{\link[DBI]{dbConnect}}.
 ##' @author Aaron A. King
 ##' @examples
 ##' \dontrun{
@@ -34,7 +33,6 @@
 ##' @importFrom dplyr bind_rows
 NULL
 
-##' @name writeDBTable
 ##' @rdname db
 ##' @export
 writeDBTable <- function (name, value,
@@ -68,7 +66,6 @@ writeDBTable <- function (name, value,
   )
 }
 
-##' @name getQuery
 ##' @rdname db
 ##' @export
 getQuery <- function (statement,
@@ -92,7 +89,6 @@ getQuery <- function (statement,
   dbGetQuery(db,statement=statement)
 }
 
-##' @name getMLEs
 ##' @rdname db
 ##' @export
 getMLEs <- function (host = getOption("aakmisc.dbhost","localhost"),
@@ -115,7 +111,6 @@ getMLEs <- function (host = getOption("aakmisc.dbhost","localhost"),
   dbGetQuery(db,"select * from mle")
 }
 
-##' @name recMLEs
 ##' @rdname db
 ##' @export
 recMLEs <- function (mle,
@@ -146,7 +141,6 @@ recMLEs <- function (mle,
   dbWriteTable(db,"mle",mle,append=TRUE,row.names=FALSE)
 }
 
-##' @name recScript
 ##' @rdname db
 ##' @export
 recScript <- function (files,
@@ -192,7 +186,6 @@ recScript <- function (files,
   cat("recorded scripts:",def$script,sep="\n")
 }
 
-##' @name dropScript
 ##' @rdname db
 ##' @export
 dropScript <- function (script,
@@ -221,7 +214,6 @@ dropScript <- function (script,
   cat("recorded scripts:",def$script,sep="\n")
 }
 
-##' @name listScripts
 ##' @rdname db
 ##' @export
 listScripts <- function (host = getOption("aakmisc.dbhost","localhost"),
@@ -245,7 +237,6 @@ listScripts <- function (host = getOption("aakmisc.dbhost","localhost"),
   cat("recorded scripts:",def$script,sep="\n")
 }
 
-##' @name catScript
 ##' @rdname db
 ##' @export
 catScript <- function (script, file = "",
