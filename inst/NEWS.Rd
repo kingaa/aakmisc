@@ -1,5 +1,10 @@
 \name{NEWS}
 \title{News for Package 'aakmisc'}
+\section{Changes in aakmisc version 0.32}{
+  \itemize{
+    \item Minor change to \code{plotMatrix} function.
+  }
+}
 \section{Changes in aakmisc version 0.31}{
   \itemize{
     \item We no longer import from the deprecated \pkg{plyr} package.

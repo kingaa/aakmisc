@@ -15,7 +15,7 @@ plotMatrix(data, ...)
   labels = names(data),
   alpha = 1,
   pch = 16,
-  size = unit(2, "mm"),
+  size = unit(0.03, "npc"),
   ...
 )
 
@@ -25,7 +25,7 @@ plotMatrix(data, ...)
   labels = names(data),
   alpha = 1,
   pch = 16,
-  size = unit(2, "mm"),
+  size = unit(0.03, "npc"),
   ...
 )
 

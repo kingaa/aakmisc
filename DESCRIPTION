@@ -1,8 +1,8 @@
 Package: aakmisc
 Type: Package
 Title: Miscellany for the King Lab
-Version: 0.31-1
-Date: 2023-03-23
+Version: 0.32-1
+Date: 2023-04-09
 Maintainer: Aaron A. King <kingaa@umich.edu>
 Authors@R: c(person(given=c("Aaron","A."),family="King",role=c("aut","cre"),email="kingaa@umich.edu"))
 Description: Miscellaneous tools, collected in one place.
@@ -11,7 +11,7 @@ Contact: <kingaa@umich.edu>
 BugReports: https://github.com/kingaa/aakmisc/issues
 Depends: R(>= 4.1.0)
 Imports: methods, grid, curl, DBI, RPostgreSQL, dplyr, ggplot2
-Suggests: scales, magrittr
+Suggests: scales
 License: GPL-3
 LazyLoad: true
 LazyData: true

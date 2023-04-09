@@ -25,12 +25,11 @@ trnc(x,range=c(0,2),only.finite=TRUE)
 trnc(x,only.finite=TRUE)
 
 library(ggplot2)
-library(magrittr)
 
 data.frame(
   x=1:1000,
   y=exp(cumsum(rnorm(1000,0,1)))
-) %>%
+) |>
   ggplot(aes(x=x,y=y))+
   geom_line()+
   scale_y_log10(limits=c(2,20),oob=trnc)
@@ -38,7 +37,7 @@ data.frame(
 data.frame(
   x=1:1000,
   y=exp(cumsum(rnorm(1000,0,1)))
-) %>%
+) |>
   ggplot(aes(x=x,y=y))+
   geom_line()+
   scale_y_log10(labels=scinot)
@@ -46,7 +45,7 @@ data.frame(
 data.frame(
   x=1:1000,
   y=exp(cumsum(rnorm(1000,0,1)))
-) %>%
+) |>
   ggplot(aes(x=x,y=y))+
   geom_line()+
   scale_y_log10(labels=function(x)scinot(x,digits=0,simplify=T))

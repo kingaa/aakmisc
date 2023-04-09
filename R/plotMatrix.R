@@ -49,7 +49,7 @@
 NULL
 
 plotMatrix.internal <- function (data, marg.exp=0.02, labels = names(data),
-  alpha = 1, pch = 16, size = unit(2,"mm"),
+  alpha = 1, pch = 16, size = unit(0.03,"npc"),
   ...) {
 
   nvar <- length(data)

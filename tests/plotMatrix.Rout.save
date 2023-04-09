@@ -31,7 +31,6 @@ The following objects are masked from 'package:base':
 
 > library(grid)
 > library(aakmisc)
-setting 'stringsAsFactors=FALSE'
 > 
 > png(filename="plotmatrix-%01d.png",res=100)
 > 
