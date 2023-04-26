@@ -1,4 +1,4 @@
-REXE = R -s
+REXE = $(shell which R) -s
 RCMD = $(REXE) CMD
 MANUALDIR = $(REPODIR)/manuals/$(PKG)
 
@@ -18,26 +18,27 @@ TARBALL = $(PKGVERS).tar.gz
 SOURCE = $(sort $(wildcard R/*R src/*.c src/*.h data/* examples/*))
 CSOURCE = $(sort $(wildcard src/*.c))
 TESTS = $(sort $(wildcard tests/*R))
+INSTDOCS = $(sort $(wildcard inst/doc/*))
 SESSION_PKGS = datasets,utils,grDevices,graphics,stats,methods,tidyverse,$(PKG)
 
 .PHONY: .check check clean covr debug default fresh \
 htmlhelp manual publish qcheck qqcheck \
-rhub rsession session win wind xcheck \
+revdeps rhub rsession session www win wind xcheck \
 xcovr vcheck ycheck
 
-.dist manual: export R_QPDF=qpdf
+.dist manual www: export R_QPDF=qpdf
 .headers: export LC_COLLATE=C
-.roxy .headers .dist manual: export R_HOME=$(shell $(REXE) RHOME)
+.roxy .headers .dist manual www: export R_HOME=$(shell $(REXE) RHOME)
 .check: export FULL_TESTS=yes
 .dist .tests .session .check: export R_KEEP_PKG_SOURCE=yes
-.session .tests .check: export R_PROFILE_USER=$(CURDIR)/.Rprofile
-.tests .session vcheck manual: export R_LIBS=$(CURDIR)/library
+revdeps .session .tests .check: export R_PROFILE_USER=$(CURDIR)/.Rprofile
+.tests .session vcheck www manual: export R_LIBS=$(CURDIR)/library
 .check: export R_CHECK_ENVIRON=$(CURDIR)/tools/check.env
 session: RSESSION = emacs -f R
 debug: RSESSION = R -d gdb
 rsession: RSESSION = R
 
-default: .roxy .NEWS .source .includes .headers
+default: .roxy .NEWS .instdocs .source .includes .headers
 	@echo $(PKGVERS)
 
 roxy: .roxy
@@ -45,6 +46,8 @@ roxy: .roxy
 dist: .dist
 
 install: .install
+
+instdocs: .instdocs
 
 COMMON_CHECK_ARGS = document=FALSE,vignettes=FALSE,clean_doc=FALSE,check_dir="check"
 
@@ -68,6 +71,10 @@ vcheck: check/$(PKG).Rcheck/$(PKG)-Ex.R
 
 NEWS: .NEWS
 
+.instdocs: $(INSTDOCS)
+	$(MAKE) -C inst/doc
+	$(TOUCH) $@
+
 .NEWS: inst/NEWS
 	$(TOUCH) $@
 
@@ -87,14 +94,14 @@ NEWS: .NEWS
 	$(REXE) -e "devtools::document()"
 	$(TOUCH) $@
 
-.check: .roxy .NEWS .includes
+.check: .roxy .NEWS .instdocs .includes
 	$(REXE) -e '$(CHECK)'
 
-.dist: .roxy .NEWS .testsource .includes
+.dist: .roxy .NEWS .instdocs .testsource .includes
 	$(RCMD) build --force --no-manual --resave-data --compact-vignettes=both --md5 .
 	$(TOUCH) $@
 
-.install: .roxy .NEWS .source .includes .headers
+.install: .roxy .NEWS .instdocs .source .includes .headers
 	mkdir -p library
 	$(REXE) -e '$(INSTALLCMD)'
 	$(RCMD) Rdconv -t html inst/NEWS.Rd -o library/$(PKG)/html/NEWS.html
@@ -114,7 +121,15 @@ htmlhelp: install manual
 	$(CP) $(PKG).pdf $(MANUALDIR)
 	$(CP) $(REPODIR)/assets/R.css $(MANUALDIR)/html
 
+www: install
+	$(MAKE)	-C www
+
 session debug rsession: .session
+
+revdeps: .dist
+	mkdir -p revdep
+	$(CP) $(TARBALL) revdep
+	$(REXE) -e "tools::check_packages_in_dir(\"revdep\",check_args=\"--as-cran\",reverse=list(which=\"most\"))"
 
 publish: dist manual htmlhelp
 	$(REXE) -e 'drat::insertPackage("$(PKGVERS).tar.gz",repodir="$(REPODIR)",action="prune")'
@@ -192,10 +207,13 @@ clean:
 	$(RM) -r lib
 	$(RM) -r *-Ex.Rout *-Ex.timings *-Ex.pdf Rplots.*
 	$(RM) *.tar.gz $(PKGVERS).zip $(PKGVERS).tgz $(PKG).pdf
+	$(MAKE) -C www clean
+	$(MAKE) -C inst/doc clean
 	$(MAKE) -C tests clean
+	$(MAKE) -C revdep clean
 	$(RM) .dist
 
 fresh: clean
-	$(RM) .headers .includes .NEWS
+	$(RM) .headers .includes .NEWS .instdocs
 	$(RM) .install .roxy .source .testsource .roxy .tests
 	$(RM) -r library

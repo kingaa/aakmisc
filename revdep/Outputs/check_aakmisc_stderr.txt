@@ -1,0 +1,9 @@
+  Running ‘db.R’
+  Comparing ‘db.Rout’ to ‘db.Rout.save’ ... OK
+  Running ‘misc.R’
+  Comparing ‘misc.Rout’ to ‘misc.Rout.save’ ... OK
+  Running ‘plotMatrix.R’
+  Comparing ‘plotMatrix.Rout’ to ‘plotMatrix.Rout.save’ ... OK
+  Running ‘random.R’
+
+
