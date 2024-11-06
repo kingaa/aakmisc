@@ -10,6 +10,7 @@
 \.tests
 \.Rhistory
 \.Rproj.user
+rchk\.out
 *.tar.gz
 *.tgz
 *.zip
@@ -18,13 +19,12 @@
 *.gcda
 *.gcno
 *.pdf
-/scripts
+*.sif
+check
 lib
 library
-check
-repo
+rchk
 wiki
-www
 tmp
 covr.html
 covr.rds
